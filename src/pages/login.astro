@@ -1,0 +1,17 @@
+---
+import moment from "moment";
+import LoginView from "../components/LoginView.svelte";
+import Layout from "../layouts/Layout.astro";
+
+const token = Astro.cookies.get("token").value;
+const expires = Astro.cookies.get("expires").number();
+
+const now = moment().unix();
+if (token && now < expires) {
+	return Astro.redirect("/user");
+}
+---
+
+<Layout title="Login">
+	<LoginView client:only></LoginView>
+</Layout>

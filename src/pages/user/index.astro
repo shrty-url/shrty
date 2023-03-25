@@ -1,0 +1,63 @@
+---
+import moment from "moment";
+import Layout from "../../layouts/Layout.astro"
+import { decodeToken } from "../../lib/JsonWebToken";
+import { User } from "../../lib/User";
+
+const token = Astro.cookies.get("token").value;
+const expires = Astro.cookies.get("expires").number();
+
+const now = moment().unix();
+if (!token || now > expires) {
+	Astro.cookies.delete("token");
+	Astro.cookies.delete("expires");
+	return Astro.redirect("/login");
+}
+
+const parsed = decodeToken(token);
+const user = await User.fromPublicId(parsed.uid);
+
+if (!user) {
+	return Astro.redirect("/login");
+}
+
+---
+
+<Layout title="Dashboard">
+<div class="profile_container">
+	<div><h1>Willkommen zurück <b>{user.username}</b></h1>
+		<div id="searchBoxContainer" class="flex-row" style="gap: 5px; margin: 10px 0;"></div>
+	</div>
+	<div class="flex-column" style="gap: 10px;">
+		<a href="/user/settings" class="weiterbutton">Account Details Ändern</a>
+		<a href="/logout" class="weiterbutton">Ausloggen</a>
+	</div>
+	<div class="flex-row filter-bar" style="grid-area: 2/1/2/3; min-height: 0; gap: 20px;">
+		<div class="flex-row" style="width: 100%;">
+			<a onclick="addSort()" class='weiterbutton'>Filter Hinzufügen</a>
+			<a onclick="window.Offset > 0 ? (() => {
+					GetData(window.Offset - 1)
+				})() : null" class='weiterbutton'>Vorherige Seite</a>
+			<a onclick="window.Offset >= 0 ? (() => {
+					GetData(window.Offset + 1)
+				})() : null" class='weiterbutton'>Nächste Seite</a>
+			<a onclick="window.Offset > 0 ? (() => {
+					GetData(0)
+				})() : null" class='weiterbutton'>Erste Seite</a>
+		</div>
+		<div class="flex-row" style="width: 100%;">
+			<select onchange="window.GetLength = parseInt(this.value); GetData(0);">
+				<option value="25">25</option>
+				<option value="50">50</option>
+				<option value="75">75</option>
+				<option value="100">100</option>
+			</select>
+			<select onchange="window.orderDirection = this.value; GetData(0);">
+				<option value="DESC">Absteigend</option>
+				<option value="ASC">Aufsteigend</option>
+			</select>
+		</div>
+	</div>
+	<div class='login-container' id="items-container"></div>
+</div>
+</Layout>
