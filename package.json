@@ -1,0 +1,35 @@
+{
+	"name": "online-energieausweis",
+	"version": "0.0.1",
+	"license": "GPL V3.0",
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"test:e2e": "cypress run",
+		"test:unit": "vitest",
+		"format": "prettier --write ."
+	},
+	"private": true,
+	"dependencies": {
+		"@astrojs/svelte": "^2.0.2",
+		"@astrojs/tailwind": "^3.1.0",
+		"astro": "^2.0.16",
+		"svelte": "^3.54.0",
+		"tailwindcss": "^3.0.24",
+		"vitest": "^0.29.2"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.36.1",
+		"@typescript-eslint/parser": "^5.36.1",
+		"astro": "^2.1.2",
+		"eslint": "~8.15.0",
+		"eslint-config-prettier": "8.1.0",
+		"prettier": "^2.8.4",
+		"sass": "^1.58.3",
+		"svelte-preprocess": "^5.0.1",
+		"typescript": "^4.9.5"
+	}
+}
