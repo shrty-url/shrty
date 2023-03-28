@@ -1,0 +1,20 @@
+version: '3'
+services:
+  online-energieausweis:
+    build: ./
+    container_name: online-energieausweis
+    command: pnpm run dev --host
+    links:
+      - db
+    environment:
+      PORT: 3000
+      DB_CONNECTION: postgres://user:secure1@db/main
+      NODE_ENV: "development"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/online-energieausweis
+  db:
+    build: ../database
+    ports:
+      - "5436:5432"

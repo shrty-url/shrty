@@ -1,0 +1,2350 @@
+---
+import PerformanceScore from "~/components/Ausweis/PerformanceScore.svelte";
+import ProgressBar from "~/components/Ausweis/ProgressBar.astro";
+import Hilfe from "~/components/Ausweis/Hilfe.astro";
+import AusweisLayout from "~/layouts/AusweisLayout.astro";
+/**
+ * include('scripts/dbcon.php');
+ini_set('session.cookie_secure', "1");
+ini_set('session.cookie_httponly', "1");
+ini_set('session.cookie_samesite', 'None');
+session_start();
+
+if ($_GET['recode'] != '') {
+	$_SESSION['recode'] = $_GET['recode'];
+}
+if ($_GET['anlass'] != '') {
+	$_SESSION['IGanlass'] = $_GET['anlass'];
+}
+if ($_GET['san'] != '') {
+	$_SESSION['IGsan'] = $_GET['san'];
+}
+if ($_GET['eid'] != '' or $_POST['eid'] != '') {
+	include("transfer/fetchsp.php");
+}
+?>
+
+<?php
+$checkArt		=	$_SESSION['ausweisarte'];
+ 
+switch ($checkArt) {
+
+	case 'VA':
+		$headART		=	"Verbrauchsausweis - 45€";
+		$titleART		=	"Verbrauchsausweis erstellen · Kaufabschluss";
+		break;
+	case 'VANW':
+		$headART		=	"Verbrauchsausweis Gewerbe - 65€";
+		$titleART		=	"Verbrauchsausweis Gewerbe erstellen · Kaufabschluss";
+		break;
+	case 'BA':
+		$headART		=	"Bedarfsausweis - 75€";
+		$titleART		=	"Bedarfsausweis erstellen · Kaufabschluss";
+		break;
+}
+define("TEST_USER_NAME", "user@ib-cornelsen.de");
+if ($_SESSION["username"] == TEST_USER_NAME) {
+	echo "<script type='text/javascript' src='/energieausweis-erstellen/FORM/js/auto-fill-values.js'></script>";
+}
+
+?>
+ */
+---
+
+<AusweisLayout title="Verbrauchsausweis erstellen">
+	<div>
+		<div>
+			<div>
+				<div>
+					<h1>Verbrauchsausweis erstellen - 45€</h1>
+	
+					<div class="flex flex-row">
+						<ProgressBar />
+						<PerformanceScore />
+					</div>
+				</div>
+	
+				<div id="wrapper-input">
+					<form id="VA-form1" method="post" enctype="multipart/form-data">
+						<fieldset>
+							<div
+								class="form-group col-12 col-md-12"
+								style="padding:0;"
+							>
+								<div class="">
+									<div class="row">
+										<div class="form-group col-12 col-md-6">
+										</div>
+	
+										<div class="form-group col-12 col-md-6">
+											<div
+												class="form-group col-12 col-md-6 offset-md-6"
+											>
+												<label class="control-label">
+													<span
+														class="help1"
+														data-toggle="tooltip"
+														data-html="true"
+														title="
+		<div class='TT'>
+		Wir helfen Ihnen bei der Eingabe. Kurze Fragen zum Formular oder der Ausweisart werden kostenfrei telefonisch beantwortet (bis 5min). Bitte kontaktieren Sie uns unter 040/209339850. Gerne nehmen wir Ihnen die Arbeit ab - Fordern Sie unseren Offline Service an und klicken auf -Hilfe anfordern- 
+		</div>"
+													>
+														<img
+															src="/energieausweis-erstellen/FORM/img/question-mark.png"
+															alt="question mark"
+															class="mark20"
+														/>
+													</span>
+												</label>
+												<input
+													class="weiterbutton"
+													onclick="javascript:toggle('hilfean')"
+													style="background-color: #31448e;width:100%;"
+													id="hilfeaw"
+													type="button"
+													value="Hilfe anfordern"
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
+	
+								<Hilfe />
+							</div>
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-md-12"
+								style="margin-bottom:0.9% !important;"
+							>
+								<label
+									class="headline"
+									id="headlinep"
+									style="font-size:18px;text-align:left;"
+									>A - Prüfung der Ausweisart</label
+								>
+							</div>
+	
+							<div class="col-lg-12">
+								<div class="GRB">
+									<div class="row">
+										<!-- Anlass für Energieausweis -->
+										<div
+											class="form-group col-md-4"
+											style="margin-bottom:0.9% !important;"
+										>
+											<label
+												class="control-label CHECK"
+												id="IGanlass"
+												data-msg="Pflichtfeld"
+												>Anlass für Energieausweis *
+											</label>
+											<div class="">
+												<label class="radio-inline rfs">
+													<input
+														type="radio"
+														class="IGanlass"
+														id="IGanlassN"
+														value="Neubau"
+														name="IGanlass"
+													/>Neubau</label
+												>
+												<label class="radio-inline rfs"
+													><input
+														type="radio"
+														class="IGanlass"
+														id="IGanlassV"
+														value="Vermietung"
+														checked
+														name="IGanlass"
+													/>Vermietung</label
+												>
+												<label class="radio-inline rfs"
+													><input
+														type="radio"
+														class="IGanlass"
+														id="IGanlassS"
+														value="Verkauf"
+														name="IGanlass"
+													/>Verkauf</label
+												>
+												<br />
+												<label class="radio-inline rfs"
+													><input
+														type="radio"
+														class="IGanlass"
+														id="IGanlassM"
+														value="Modernisierung"
+														name="IGanlass"
+													/>Modernisierung</label
+												>
+												<label class="radio-inline rfs"
+													><input
+														type="radio"
+														class="IGanlass"
+														id="IGanlassSo"
+														value="Sonstiges"
+														name="IGanlass"
+													/>Sonstiges</label
+												>
+											</div>
+										</div>
+	
+										<!-- Baujahr Heizung -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label"
+												for="IGheizung"
+												>Baujahr Heizung *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte geben Sie hier das Baujahr der Heizungsanlage ein. Sollten unterschiedliche Baujahre vorliegen, dann geben Sie einen Zeitbereich ein <br />z.B. 1994-2001.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<input
+													id="IGheizung"
+													name="IGheizung"
+													maxlength="20"
+													class="form-control input-md"
+													type="text"
+													required
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+												/>
+											</div>
+										</div>
+	
+										<!-- Baujahr -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label CHECK"
+												for="IGbaujahr"
+												>Baujahr Gebäude *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		 Bitte geben Sie hier das Baujahr des Gebäudes ein. Sollte eine eine grundlegende Sanierung von Dach, Fenster und Heizung stattgefunden haben, dann berücksichtigen Sie das in dem Sie bei Sanierungsstatus -saniert- angeben.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<input
+													id="IGbaujahr"
+													name="IGbaujahr"
+													maxlength="20"
+													class="form-control input-md CHECK"
+													type="text"
+													required
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+												/>
+											</div>
+										</div>
+	
+										<!-- Anzahl der Wohnungen -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label CHECK"
+												for="IGanzahl"
+												>Anz Wohnungen *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		 Bitte geben Sie hier die Anzahl der Wohnungen ein, die sich im Gebäude befinden.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<input
+													id="IGanzahl"
+													name="IGanzahl"
+													class="form-control input-md zahlen"
+													type="text"
+													required
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+													maxlength="3"
+												/>
+											</div>
+										</div>
+	
+										<!-- Dachgeschoss -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label CHECK"
+												for="IGdach"
+												>Sanierungsstatus *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte geben Sie an ob das Gebäude energetisch saniert oder unsaniert ist. Wenn das Dach mindestens 12 cm gedämmt und Heizung sowie Fenster nicht älter als 30 Jahre sind, können Sie saniert auswählen.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<select
+													id="IGsan"
+													name="IGsan"
+													class="form-control"
+													required
+													data-msg="Pflichtfeld"
+												>
+													<option>Bitte auswählen</option>
+													<option value="san"
+														>saniert</option
+													>
+													<option value="unsan"
+														>unsaniert</option
+													>
+												</select>
+											</div>
+										</div>
+									</div><!-- 2-row-close -->
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<div id="ausweispflichtk" style="display:none;">
+								<hr class="trenner_form" />
+								<div class="col-md-12">
+									<div class="OPT-BOX TOP-BOX">
+										<div class="row">
+											<div class="form-group col-md-9">
+												<label
+													class="control-label"
+													for="weiterbedarf"
+													style="font-weight:bold;font-size:16px;text-align:left;"
+													>Sie benötigen einen
+													Bedarfsausweis. Bitte führen Sie
+													hier Ihre Eingabe für den
+													Bedarfsausweis fort und klicken
+													auf den Button:
+													<span
+														class="help1"
+														data-toggle="tooltip"
+														data-html="true"
+														title="
+		<div class='TT'>
+		Der Bedarfsausweis ist die etwas umfangreichere Berechnung. Sie benötigen z.B. Länge, Breite und Geschoßhöhe des Gebäudes. Auch müssen genauere Angaben zur Anlagentechnik gemacht werden.
+		</div>"
+													>
+														<img
+															src="/energieausweis-erstellen/FORM/img/question-mark.png"
+															alt="question mark"
+															class="mark20"
+														/>
+													</span>
+												</label>
+											</div>
+	
+											<div
+												class="form-group col-md-3"
+												style="text-align:right;"
+											>
+												<input
+													class="weiterbutton cancel"
+													style="background-color: #31448e; border-radius: 0.35em;"
+													id="weiterbedarf"
+													type="submit"
+													name="submit6"
+													value="Bedarfsausweis erstellen"
+												/>
+											</div>
+										</div><!-- 2-row-close -->
+									</div>
+								</div>
+							</div>
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-md-12"
+								style="margin-bottom:0.9% !important;"
+							>
+								<label
+									class="headline"
+									id="headlinea"
+									style="font-size:18px;text-align:left;"
+									>B - Eingabe der Gebäudeadresse - Angaben zu
+									Wohnfläche, Keller und Dachgeschoss</label
+								>
+							</div>
+	
+							<div class="col-md-12">
+								<div class="GRB">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="row">
+												<!-- Strasse -->
+												<div class="form-group col-md-4">
+													<label
+														class="control-label"
+														for="IGstrasse"
+														>Straße, Hausnummer *
+														<span
+															class="help1"
+															data-toggle="tooltip"
+															data-html="true"
+															title="
+		<div class='TT'>
+		Bitte geben Sie hier die Straße und Hausnummer des Gebäudes ein.
+		</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question mark"
+																class="mark20"
+															/>
+														</span>
+													</label>
+													<div class="">
+														<input
+															id="IGstrasse"
+															name="IGstrasse"
+															class="form-control input-md strasse"
+															type="text"
+															autocomplete="off"
+															required
+															data-msg="Pflichtfeld"
+															data-msg-minlength="min. 5 Zeichen"
+															data-msg-maxlength="max. 40 Zeichen"
+														/>
+													</div>
+												</div>
+	
+												<!-- PLZ -->
+												<div
+													class="form-group col-md-4 PLZ"
+												>
+													<label
+														class="control-label"
+														for="IGplz"
+														>PLZ *
+														<span
+															class="help1"
+															data-toggle="tooltip"
+															data-html="true"
+															title="
+		<div class='TT'>
+		Bitte geben Sie hier die PLZ des Gebäudes ein.
+		</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question mark"
+																class="mark20"
+															/>
+														</span>
+													</label>
+													<div class="">
+														<!-- IGplz: onfocus="IclearOrt()" entfernt - Nelson -->
+	
+														<input
+															id="IGplz"
+															name="IGplz"
+															class="form-control input-md klima CHECK"
+															type="text"
+															required
+															autocomplete="off"
+															data-msg="Pflichtfeld"
+															maxlength="5"
+														/>
+														<div
+															id="PLZ_list"
+															style="position:relative;"
+														>
+														</div>
+													</div>
+												</div>
+	
+												<!-- IGort: readonly entfernt - Nelson -->
+												<div class="form-group col-md-4">
+													<label
+														class="control-label"
+														for="IGort"
+														>Ort *
+														<span
+															class="help1"
+															data-toggle="tooltip"
+															data-html="true"
+															title="
+		<div class='TT'>
+		Ort des Gebäudes wird automatisch ermittelt.
+		</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question mark"
+																class="mark20"
+															/>
+														</span>
+													</label>
+													<div class="">
+														<input
+															name="IGort"
+															id="IGort"
+															class="form-control input-md buchstaben"
+															type="text"
+														/>
+													</div>
+												</div>
+											</div><!-- 2-row-close -->
+										</div><!-- 2-container-close -->
+	
+										<div class="col-md-6">
+											<div class="row">
+												<!-- Wohnfläche -->
+												<div class="form-group col-md-4">
+													<label
+														class="control-label"
+														for="IGflaeche"
+														>Wohnfläche m² *
+														<span
+															class="help1"
+															data-toggle="tooltip"
+															data-html="true"
+															title="
+		<div class='TT'>
+		Bitte geben Sie hier die beheizte Wohnfläche in m² ein. Dabei handelt es sich um die Wohnfläche abzüglich vorhandener Flächen die sich außerhalb des Gebäudes befinden. (Balkone, Terassen,etc.).
+		</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question mark"
+																class="mark20"
+															/>
+														</span>
+													</label>
+													<div class="">
+														<input
+															id="IGflaeche"
+															name="IGflaeche"
+															maxlength="4"
+															class="form-control input-md zahlen CHECK"
+															required
+															autocomplete="off"
+															data-msg="Pflichtfeld"
+															data-rule-minlength="2"
+															data-msg-minlength="min. 2 Zeichen"
+														/>
+													</div>
+												</div>
+	
+												<!-- Keller -->
+												<div class="form-group col-md-4">
+													<label
+														class="control-label"
+														for="IGkeller"
+														>Keller *
+													</label>
+													<div class="">
+														<select
+															id="IGkeller"
+															name="IGkeller"
+															class="form-control CHECK"
+															required
+															data-msg="Pflichtfeld"
+														>
+															<option
+																>Bitte auswählen</option
+															>
+															<option value="1.2"
+																>nicht vorhanden</option
+															>
+															<option value="1.2"
+																>unbeheizt</option
+															>
+															<option value="1.35"
+																>beheizt</option
+															>
+														</select>
+													</div>
+												</div>
+	
+												<!-- Dachgeschoss -->
+												<div class="form-group col-md-4">
+													<label
+														class="control-label"
+														for="IGdach"
+														>Dachgeschoss *
+													</label>
+													<div class="">
+														<select
+															id="IGdach"
+															name="IGdach"
+															class="form-control"
+															required
+															data-msg="Pflichtfeld"
+														>
+															<option
+																>Bitte auswählen</option
+															>
+															<option value="dnein"
+																>nicht vorhanden</option
+															>
+															<option value="dub"
+																>unbeheizt</option
+															>
+															<option value="dbh"
+																>beheizt</option
+															>
+														</select>
+													</div>
+												</div>
+											</div><!-- 2-row-close -->
+										</div><!-- 2-container-close -->
+									</div><!-- 2-row-close -->
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-md-12"
+								style="margin-bottom:0.9% !important;"
+							>
+								<label
+									class="headline"
+									id="headlineh"
+									style="font-size:18px;text-align:left;"
+									>C - Eingabe von 3 zusammenhängenden
+									Verbrauchsjahren</label
+								>
+							</div>
+	
+							<div class="col-lg-12">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="GRB"></div>
+									</div>
+								</div>
+							</div>
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-md-12"
+								style="margin-bottom:0.9% !important;"
+							>
+								<label
+									class="headline"
+									id="headlineww"
+									style="font-size:18px;text-align:left;"
+									>D - Eingabe Warmwasseranteil und Verwendung von
+									alternativen Energieversorgungssystemen</label
+								>
+							</div>
+	
+							<div class="col-md-12">
+								<div class="GRB">
+									<div class="row">
+										<!-- Anteil WW enthalten -->
+										<div class="form-group col-md-3">
+											<label class="control-label"
+												>Warmwasser im Verbrauch enthalten:*
+											</label>
+											<div class="">
+												<label class="radio-inline rfs"
+													><input
+														type="radio"
+														class="IGwwbool"
+														id="IGwwbool1"
+														name="IGwwbool"
+														value="0"
+													/> Nein</label
+												>
+												<label class="radio-inline rfs"
+													><input
+														type="radio"
+														class="IGwwbool"
+														id="IGwwbool2"
+														name="IGwwbool"
+														value="1"
+													/> Ja</label
+												>
+											</div>
+										</div>
+	
+										<!-- Warmwasser Antel -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label"
+												for="IGwarmwasser"
+												>% Anteil Warmwasser
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Wenn bekannt geben Sie den Anteil der Warmwasser-Versorgung hier ein. Standardmäßig wird ein Anteil von 18% angenommen.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+	
+											<input
+												id="IGwarmwasser"
+												name="IGwarmwasser"
+												maxlength="2"
+												class="form-control input-md zahlen CHECK"
+												type="text"
+												readonly
+												autocomplete="off"
+												data-msg="Pflichtfeld"
+											/>
+										</div>
+	
+										<div class="form-group col-md-2">
+											<label
+												class="control-label"
+												for="IGwarmwasser"
+												>zusätzliche Heizquelle
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Wenn bekannt geben Sie den Anteil der Warmwasser-Versorgung von der zusätzlichen Heizquelle hier ein. Standardmäßig wird ein Anteil von 18% angenommen.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+	
+											<input
+												id="IGwarmwasserw"
+												name="IGwarmwasser2"
+												maxlength="3"
+												class="form-control input-md zahlen"
+												type="text"
+												autocomplete="off"
+												data-msg="Pflichtfeld"
+												disabled
+											/>
+										</div>
+	
+										<!-- Alternative Energieversorgungssyteme -->
+										<div class="form-group col-md-5">
+											<label class="control-label"
+												>Alternative
+												Energieversorgungssysteme werden
+												genutzt für <span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte setzen Sie den Haken falls nachhaltige CO2-Effiziente Heizungssysteme vorhanden sind. Das wäre beispielsweise bei Pelletofen, Wärmepumpe, BHKW, Solarsystem, etc. der Fall.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<label class="checkbox-inline rfs"
+													><input
+														type="checkbox"
+														class="IGversorgungssysteme"
+														id="IGversorgungssysteme1"
+														name="IGversorgungssysteme1"
+														value="Heizung"
+													/>Heizung</label
+												>
+												<label class="checkbox-inline rfs"
+													><input
+														type="checkbox"
+														class="IGversorgungssysteme"
+														id="IGversorgungssysteme2"
+														name="IGversorgungssysteme2"
+														value="Warmwasser"
+													/>Warmwasser</label
+												>
+												<label class="checkbox-inline rfs"
+													><input
+														type="checkbox"
+														class="IGversorgungssysteme"
+														id="IGversorgungssysteme3"
+														name="IGversorgungssysteme3"
+														value="Lüftung"
+													/>Lüftung</label
+												>
+												<label class="checkbox-inline rfs"
+													><input
+														type="checkbox"
+														class="IGversorgungssysteme"
+														id="IGversorgungssysteme4"
+														name="IGversorgungssysteme4"
+														value="Kühlung"
+													/>Kühlung</label
+												>
+											</div>
+										</div>
+									</div><!-- 2-row-close -->
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-md-12"
+								style="margin-bottom:0.9% !important;"
+							>
+								<label
+									class="headline"
+									id="headlineg"
+									style="font-size:18px;text-align:left;"
+									>E - Eingabe von Gebäudetyp, Gebäudeteil,
+									Lüftung, Kühlung und Leerstand</label
+								>
+							</div>
+	
+							<div class="col-md-12">
+								<div class="GRB">
+									<div class="row">
+										<!-- Gebäudetyp -->
+										<div class="form-group col-md-3">
+											<label class="control-label" for="IGtyp"
+												>Gebäudetyp *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte wählen Sie hier den Gebäudetyp aus. 
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<select
+													id="IGtyp"
+													name="IGtyp"
+													class="form-control"
+													required
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+												>
+													<option>Bitte auswählen</option>
+													<option value="Einfamilienhaus"
+														>Einfamilienhaus</option
+													>
+													<option
+														value="Freistehendes Einfamilienhaus"
+														>Freistehendes
+														Einfamilienhaus</option
+													>
+													<option
+														value="Freistehendes Zweifamilienhaus"
+														>Freistehendes
+														Zweifamilienhaus</option
+													>
+													<option value="Doppelhaushälfte"
+														>Doppelhaushälfte</option
+													>
+													<option value="Reihenendhaus"
+														>Reihenendhaus</option
+													>
+													<option value="Reihenmittelhaus"
+														>Reihenmittelhaus</option
+													>
+													<option value="Mehrfamilienhaus"
+														>Mehrfamilienhaus</option
+													>
+													<option
+														value="Wohn- und Geschäftshaus"
+														>Wohn- und Geschäftshaus</option
+													>
+													<option value="Atrium-Bungalow"
+														>Atrium-Bungalow</option
+													>
+													<option value="Winkelbungalow"
+														>Winkelbungalow</option
+													>
+												</select>
+											</div>
+										</div>
+	
+										<!-- Gebäudeteil -->
+										<div class="form-group col-md-3">
+											<label class="control-label"
+												>Gebäudeteil *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte geben Sie hier den Gebäudeteil ein. In den meisten Fällen handelt es sich um das Gesamtgebäude. Sollte es sich allerdings um ein Gebäude mit mehr als 10% Gewerbeanteil handeln, so sollten 2 Ausweise erstellt werden. In diesem Fall wählen Sie Gebäudeteil 'Wohnen' bzw. Gebäudeteil 'Gewerbe'.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<select
+													id="IGeil"
+													name="IGteil"
+													class="form-control"
+													required
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+												>
+													<option>Bitte auswählen</option>
+													<option value="Gesamtgebäude"
+														>Gesamtgebäude</option
+													>
+													<option value="Wohnen"
+														>Wohnen</option
+													>
+												</select>
+											</div>
+										</div>
+	
+										<!-- Lüftung -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label"
+												for="IGlueftung"
+												>Lüftung durch *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte geben Sie hier ein ob über die Fenster natürlich belüftet wird oder über eine Lüftungsanlage.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<select
+													id="IGlueftung"
+													name="IGlueftung"
+													class="form-control"
+													required
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+												>
+													<option>Bitte auswählen</option>
+													<option value="Fensterlüftung"
+														>Fensterlüftung</option
+													>
+													<option value="Schachtlüftung"
+														>Schachtlüftung</option
+													>
+													<option
+														value="Lüftungsanlage ohne Wärmerückgewinnung"
+														>Lüftungsanlage ohne
+														Wärmerückgewinnung</option
+													>
+													<option
+														value="Lüftungsanlage mit Wärmerückgewinnung"
+														>Lüftungsanlage mit
+														Wärmerückgewinnung</option
+													>
+												</select>
+											</div>
+										</div>
+	
+										<!-- Lüftung -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label"
+												for="IGkuehlung"
+												>Anlage Kühlung *
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte geben Sie an ob das Gebäude im Sommer zusätzlich gekühlt wird.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<select
+													id="IGkuehlung"
+													name="IGkuehlung"
+													class="form-control"
+													required
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+												>
+													<option>Bitte auswählen</option>
+													<option value="1"
+														>vorhanden</option
+													>
+													<option value="0"
+														>nicht vorhanden</option
+													>
+												</select>
+											</div>
+										</div>
+	
+										<!-- Leerstand -->
+										<div class="form-group col-md-2">
+											<label
+												class="control-label"
+												for="IGleer"
+												>Leerstand in %
+												<span
+													class="help1"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Bitte geben Sie hier den Leerstand in % des Gesamtzeitraumes (3 Jahre) ein. Zum Beispiel 4 Monate Leerstand in 36 Monaten wären dann ca. 11%.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<div class="">
+												<input
+													id="IGleer"
+													name="IGleer"
+													maxlength="2"
+													class="form-control input-md zahlen"
+													type="text"
+													autocomplete="off"
+													data-msg="Pflichtfeld"
+												/>
+											</div>
+										</div>
+									</div><!-- 2-row-close -->
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-md-12"
+								style="margin-bottom:0.9% !important;"
+							>
+								<label
+									class="headline"
+									id="headlinet"
+									style="font-size:18px;text-align:left;"
+									>F - Bitte prüfen Sie hier die Angaben zum
+									Sanierungszustand des Gebäudes</label
+								>
+							</div>
+	
+							<div class="col-md-12">
+								<div class="GRB3">
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label class="control-label"
+												>Heizungsanlage (bitte zutreffendes
+												ankreuzen):*
+												<span
+													class="help2"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Wir benötigen diese Angaben um den allgemeinen Modernisierungsstand einschätzen zu können. Bitte setzen Sie den Haken wenn zutreffend. Das seit Mai 2021 gültige GEG erfordert eine genauere Prüfung anhand von Fotos. Bitte laden Sie ein oder mehrere Fotos der Heizungsanlage bzw. des Heizungsraums hoch.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+	
+											<hr class="trenner_form" />
+										</div>
+	
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage1"
+													name="IGheizungsanlage1"
+													value="ZH"
+												/>Zentral/Etage</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage2"
+													name="IGheizungsanlage2"
+													value="EO"
+												/>Einzelöfen</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage3"
+													name="IGheizungsanlage3"
+													value="DH"
+												/>Durchlauferhitzer</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage4"
+													name="IGheizungsanlage4"
+													value="SK"
+												/>Standardkessel</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage5"
+													name="IGheizungsanlage5"
+													value="SSWW"
+												/>Solarsystem für Warmwasser</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage6"
+													name="IGheizungsanlage6"
+													value="WP"
+												/>Wärmepumpe</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage7"
+													name="IGheizungsanlage7"
+													value="NK"
+												/>Niedertemperaturkessel</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage8"
+													name="IGheizungsanlage8"
+													value="BWK"
+												/>Brennwertkessel</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage9"
+													name="IGheizungsanlage9"
+													value="WRGD"
+												/>Warmwasserrohre gedämmt</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage10"
+													name="IGheizungsanlage10"
+													value="HRGD"
+												/>Heizungsrohre gedämmt</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage11"
+													name="IGheizungsanlage11"
+													value="ZK"
+												/>Zirkulation</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGheizungsanlage12"
+													name="IGheizungsanlage12"
+													value="RTR"
+												/>Raumtemperaturregler</label
+											>
+										</div>
+									</div><!-- 2-row-close -->
+	
+									<hr class="trenner_form" />
+	
+									<div class="col-md-12">
+										<div class="">
+											<div class="row TOP-EQ">
+												<div
+													class="form-group col-xs-12 col-sm-12 col-md-6 EQ"
+												>
+													<div class="GRB4">
+														<div class="UP-info">
+															<input
+																type="file"
+																class="image_upload"
+																name="heizung[]"
+																multiple
+															/>
+	
+															<p>
+																<b
+																	><span
+																		style="color:red;font-weight:bold;"
+																		>WICHTIG:
+																	</span>Bild
+																	Upload -
+																	Heizungsanlage
+																	bzw. des
+																	Wärmeerzeugers
+																	(1 bis 4 Bilder)</b
+																>
+															</p>
+	
+															<p>
+																Seit Mai 2021 wird
+																das neue
+																Gebäudeenergiegesetz
+																(GEG) in Deutschland
+																angewendet. Daher
+																werden von nun an
+																Bilder vom Gebäude
+																zur Einschätzung der
+																Modernisierungsempfehlungen
+																benötigt. Hierfür
+																müssen laut
+																Gesetzgeber
+																Detailbilder vom
+																Sanierungszustand
+																bzw. der
+																Gebäudehülle und der
+																Anlagentechnik
+																(Wärmeerzeuger etc.)
+																zur Verfügung
+																gestellt werden.
+																Diese Bilder
+																erscheinen nicht auf
+																Ihrem
+																Energieausweis.
+															</p>
+															<br />
+															<div class="bild_list">
+																<p>
+																	1.Bild :
+																	Heizungsraum mit
+																	Heizkessel bzw.
+																	Heizungsanlage*
+																</p>
+																<p>
+																	2.Bild : <em
+																		>(wenn
+																		möglich,
+																		Warmwasserleitungen
+																		bzw. die
+																		Heizungsrohre)</em
+																	>
+																</p>
+																<p>
+																	3.Bild : <em
+																		>(wenn
+																		möglich,
+																		Detailbild
+																		des
+																		Wärmeerzeugers
+																		bzw.
+																		Heizkessel)</em
+																	>
+																</p>
+																<p>
+																	4.Bild : <em
+																		>(wenn
+																		möglich,
+																		Bild des
+																		Typenschildes
+																		der Heizung)</em
+																	>
+																</p>
+															</div>
+															<p>
+																* erforderliches
+																Bild
+															</p>
+															<br />
+															<p>
+																Idealerweise sollte
+																der Heizungsraum mit
+																Heizkessel bzw.
+																Heizungsanlage
+																fotografiert werden.
+																Die
+																Warmwasserleitungen
+																bzw. die
+																Heizungsrohre
+																sollten gut sichtbar
+																sein und vorhandene
+																bzw. nicht
+																vorhandene Dämmung
+																sollte erkennbar
+																sein.
+															</p>
+														</div>
+													</div>
+												</div>
+	
+												<div
+													class="form-group col-xs-12 col-sm-12 col-md-6 EQ"
+												>
+													<div class="GRB5">
+														<p>
+															Diese Bilder erscheinen <span
+																class="red-bold"
+																>nicht</span
+															> auf Ihrem Energieausweis!<br
+															/>
+															<strong
+																>Bitte laden Sie
+																hier mind. 1 Bild
+																hoch:</strong
+															>
+														</p>
+														<div
+															class="image_container"
+														>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- 2-container-close -->
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<hr class="trenner_form" />
+	
+							<div class="col-md-12">
+								<div class="GRB3">
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label class="control-label">
+												Fenster/Dachfenster/Türen (bitte
+												zutreffendes ankreuzen):*
+	
+												<span
+													class="help2"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Wir benötigen diese Angaben um den allgemeinen Modernisierungsstand einschätzen zu können. Bitte setzen Sie den Haken wenn zutreffend.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<hr class="trenner_form" />
+										</div>
+	
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach1"
+													name="IGfensterdach1"
+													value="EG"
+												/>Einfachglas</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach2"
+													name="IGfensterdach2"
+													value="DF"
+												/>Doppelverglasung</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach3"
+													name="IGfensterdach3"
+													value="IVG"
+												/>Isolierverglasung</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach4"
+													name="IGfensterdach4"
+													value="PHF"
+												/>Dreifachverglasung</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach5"
+													name="IGfensterdach5"
+													value="FD"
+												/>Alle Fenster dicht</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach6"
+													name="IGfensterdach6"
+													value="FTUD"
+												/>Fenster teilweise undicht</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach7"
+													name="IGfensterdach7"
+													value="TD"
+												/>Alle Türen dicht</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach8"
+													name="IGfensterdach8"
+													value="TUD"
+												/>Türen teilweise undicht</label
+											>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGfensterdach9"
+													name="IGfensterdach9"
+													value="RKD"
+												/>Rollladenkästen gedämmt, luftdicht</label
+											>
+										</div>
+									</div><!-- 2-row-close -->
+	
+									<hr class="trenner_form" />
+	
+									<div class="col-md-12">
+										<div class="">
+											<div class="row TOP-EQ">
+												<div class="form-group col-md-6 EQ">
+													<div class="GRB4">
+														<div class="UP-info">
+															<input
+																type="file"
+																class="image_upload"
+																name="fenster[]"
+																multiple
+															/>
+	
+															<p>
+																<b
+																	><span
+																		style="color:red;font-weight:bold;"
+																		>WICHTIG:
+																	</span>Bild
+																	Upload -
+																	Fenster/Dachfenster/Türen
+																	(1 bis 4 Bilder)</b
+																>
+															</p>
+	
+															<p>
+																Seit Mai 2021 wird
+																das neue
+																Gebäudeenergiegesetz
+																(GEG) in Deutschland
+																angewendet. Daher
+																werden von nun an
+																Bilder vom Gebäude
+																zur Einschätzung der
+																Modernisierungsempfehlungen
+																benötigt. Hierfür
+																müssen laut
+																Gesetzgeber
+																Detailbilder vom
+																Sanierungszustand
+																bzw. der
+																Gebäudehülle und der
+																Anlagentechnik
+																(Wärmeerzeuger etc.)
+																zur Verfügung
+																gestellt werden.
+																Diese Bilder
+																erscheinen nicht auf
+																Ihrem
+																Energieausweis.
+															</p>
+															<br />
+															<div class="bild_list">
+																<p>
+																	1.Bild :
+																	Exemplarisches
+																	Bild eines
+																	Fensters*
+																</p>
+																<p>
+																	2.Bild : <em
+																		>(Im
+																		Baualter
+																		abweichendes
+																		Fenster)</em
+																	>
+																</p>
+																<p>
+																	3.Bild : <em
+																		>(Im
+																		Baualter
+																		abweichendes
+																		Fenster)</em
+																	>
+																</p>
+																<p>
+																	4.Bild : <em
+																		>(wenn
+																		möglich,
+																		Bild der
+																		Haustür)</em
+																	>
+																</p>
+															</div>
+															<p>
+																* erforderliches
+																Bild
+															</p>
+															<br />
+															<p>
+																Wenn eine Fensterart
+																bzw. Fensterqualität
+																verbaut wurde,
+																reicht ein
+																exemplarisches Bild,
+																sonst pro Art ein
+																Bild. Wenn möglich
+																eine Großaufnahme
+																des Fensters bzw.
+																des Fensterfalzes.
+																Idealerweise sollte
+																der Datumsaufdruck
+																am Verglasungsrahmen
+																zu erkennen sein.
+															</p>
+														</div>
+													</div>
+												</div>
+	
+												<div class="form-group col-md-6 EQ">
+													<div class="GRB5">
+														<p>
+															Diese Bilder erscheinen <span
+																class="red-bold"
+																>nicht</span
+															> auf Ihrem Energieausweis!<br
+															/>
+															<strong
+																>Bitte laden Sie
+																hier mind. 1 Bild
+																hoch:</strong
+															>
+														</p>
+														<div
+															class="image_container"
+														>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- 2-container-close -->
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<hr class="trenner_form" />
+	
+							<div class="col-md-12">
+								<div class="GRB3">
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label class="control-label">
+												Wärmedämmung (bitte zutreffendes
+												ankreuzen):*
+	
+												<span
+													class="help2"
+													data-toggle="tooltip"
+													data-html="true"
+													title="
+		<div class='TT'>
+		Wir benötigen diese Angaben um den allgemeinen Modernisierungsstand einschätzen zu können. Bitte setzen Sie den Haken wenn zutreffend. Das seit Mai 2021 gültige GEG erfordert eine genauere Prüfung anhand von Fotos. Bitte laden Sie ein oder mehrere Fotos der Außenwand und des Dachbereiches hoch.
+		</div>"
+												>
+													<img
+														src="/energieausweis-erstellen/FORM/img/question-mark.png"
+														alt="question mark"
+														class="mark20"
+													/>
+												</span>
+											</label>
+											<hr class="trenner_form" />
+										</div>
+	
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGwaermedaemmung1"
+													name="IGwaermedaemmung1"
+													value="AWD"
+												/>Außenwand gedämmt</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGwaermedaemmung2"
+													name="IGwaermedaemmung2"
+													value="KWD"
+												/>Kelleraußenwand gedämmt</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGwaermedaemmung3"
+													name="IGwaermedaemmung3"
+													value="KDD"
+												/>Kellerdecke gedämmt</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGwaermedaemmung4"
+													name="IGwaermedaemmung4"
+													value="DGD"
+												/>Dachgeschoss gedämmt</label
+											>
+										</div>
+										<div class="form-group col-md-3 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGwaermedaemmung5"
+													name="IGwaermedaemmung5"
+													value="OGDDW"
+												/>Oberste Geschossdecke gedämmt</label
+											>
+										</div>
+										<div class="form-group col-md-6 mw1">
+											<label class="checkbox-inline rfs"
+												><input
+													type="checkbox"
+													class="IGversorgungssysteme"
+													id="IGwaermedaemmung6"
+													name="IGwaermedaemmung6"
+													value="OGDD"
+												/>Oberste Geschossdecke min. 12cm
+												gedämmt</label
+											>
+										</div>
+									</div><!-- 2-row-close -->
+	
+									<hr class="trenner_form" />
+	
+									<div class="col-md-12">
+										<div class="">
+											<div class="row TOP-EQ">
+												<div class="form-group col-md-6 EQ">
+													<div class="GRB4">
+														<div class="UP-info">
+															<input
+																type="file"
+																class="image_upload"
+																name="daemmung[]"
+																multiple
+															/>
+	
+															<p>
+																<b
+																	><span
+																		style="color:red;font-weight:bold;"
+																		>WICHTIG:
+																	</span>Bild
+																	Upload -
+																	Wärmedämmung (2
+																	bis 4 Bilder)</b
+																>
+															</p>
+	
+															<p>
+																Seit Mai 2021 wird
+																das neue
+																Gebäudeenergiegesetz
+																(GEG) in Deutschland
+																angewendet. Daher
+																werden von nun an
+																Bilder vom Gebäude
+																zur Einschätzung der
+																Modernisierungsempfehlungen
+																benötigt. Hierfür
+																müssen laut
+																Gesetzgeber
+																Detailbilder vom
+																Sanierungszustand
+																bzw. der
+																Gebäudehülle und der
+																Anlagentechnik
+																(Wärmeerzeuger etc.)
+																zur Verfügung
+																gestellt werden.
+																Diese Bilder
+																erscheinen nicht auf
+																Ihrem
+																Energieausweis.
+															</p>
+															<br />
+															<div class="bild_list">
+																<p>
+																	1.Bild :
+																	Detailbild Dach
+																	bzw. des
+																	Dachinnenraums*
+																</p>
+																<p>
+																	2.Bild : <em
+																		>(weiteres
+																		Detailbild
+																		Dach bzw.
+																		des
+																		Dachinnenraums)</em
+																	>
+																</p>
+																<p>
+																	3.Bild :
+																	Detailbild der
+																	Außenwand*
+																</p>
+																<p>
+																	4.Bild : <em
+																		>(weiteres
+																		Detailbild
+																		der
+																		Außenwand)</em
+																	>
+																</p>
+															</div>
+															<p>
+																* erforderliches
+																Bild
+															</p>
+															<br />
+															<p>
+																Idealerweise sollte
+																Dämmung oder nicht
+																vorhandene Dämmung
+																gut zu erkennen
+																sein. Sollte
+																aufgrund der
+																Verkleidung bzw.
+																Verschalung, der
+																Dämmzustand nicht
+																erkennbar sein,
+																reicht ein Bild vom
+																ausgebauten
+																Dachgeschoss
+																und/oder ein
+																Außenbild vom
+																Dach-Wandanschluss.
+																Sollte beim
+																Detailbild der
+																Außenwand aufgrund
+																des Wandaufbaus die
+																Dämmung nicht
+																erkennbar sein,
+																reicht ein normales
+																Bild der Außenwand
+																und/oder vom
+																Dach-Wandanschluss.
+															</p>
+														</div>
+													</div>
+												</div>
+	
+												<div class="form-group col-md-6 EQ">
+													<div class="GRB5">
+														<p>
+															Diese Bilder erscheinen <span
+																class="red-bold"
+																>nicht</span
+															> auf Ihrem Energieausweis!<br
+															/>
+															<strong
+																>Bitte laden Sie
+																hier mind. 2 Bilder
+																hoch:</strong
+															>
+														</p>
+														<div
+															class="image_container"
+														>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- 2-container-close -->
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-md-12"
+								style="margin-bottom:0.9% !important;"
+							>
+								<label
+									class="headline"
+									id="headlinebu"
+									style="font-size:18px;text-align:left;"
+									>G - Hier können Sie ein Gebäudebild hochladen
+									und sich Ihren Energieausweis als PDF anschauen</label
+								>
+							</div>
+	
+							<div class="col-md-12">
+								<div class="">
+									<div class="row TOP-EQ">
+										<div class="form-group col-md-6 EQ">
+											<div class="GRB4">
+												<div
+													class="form-group col-md-12 nopad"
+												>
+													<label class="control-label">
+														Gebäudebild Bildupload :
+														<span
+															class="help2"
+															data-toggle="tooltip"
+															data-html="true"
+															title="<div class='TT'>Wenn vorhanden können Sie ein Gebäudefoto (Außenansicht) hochladen.</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question-mark"
+																class="mark20"
+															/>
+														</span>
+													</label>
+													<hr class="trenner_form_100" />
+												</div>
+	
+												<div class="form-group col-md-12">
+													<div
+														class="row"
+														style="flex-direction: column;"
+													>
+														<input
+															type="file"
+															class="image_upload"
+															name="general[]"
+															style="margin-left: 20px;"
+														/>
+														<div
+															class="form-group col-3 image_container"
+															style=""
+														>
+															<input
+																type="hidden"
+																id="uploaded_images"
+																name="uploaded_images"
+																value=""
+															/>
+														</div>
+	
+														<canvas
+															id="image_canvas"
+															style="display: none;"
+															width="500"></canvas>
+													</div>
+												</div>
+											</div>
+										</div>
+	
+										<div class="form-group col-md-6 EQ">
+											<div class="GRB5">
+												<div
+													class="form-group col-md-12 nopad"
+												>
+													<label class="control-label">
+														Ansichtsausweis &amp;
+														Datenblatt :
+														<span
+															class="help2"
+															data-toggle="tooltip"
+															data-html="true"
+															title="<div class='TT'>Hier gehts zu Ihrem Ansichtsausweis und Datenblatt als PDF.</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question-mark"
+																class="mark20"
+															/>
+														</span>
+													</label>
+													<hr class="trenner_form_100" />
+												</div>
+	
+												<div class="form-group col-md-12">
+													<div class="row">
+														<button
+															class="pdf-anzeigen cancel"
+															type="submit"
+															id="pdf-anzeigen"
+															name="submit2"
+															value="Ansichtsausweis >>>"
+														>
+															<img
+																class="button-img"
+																src="/energieausweis-erstellen/FORM/img/ausweis.webp"
+																alt="Ausweis"
+															/>
+															<span
+																style="color:black;font-weight:bold;"
+																>Ansichtsausweis</span
+															>
+														</button>
+														<button
+															class="pdf-datenblatt cancel"
+															type="submit"
+															id="pdf-datenblatt"
+															name="submit2"
+															value="Datenblatt >>>"
+														>
+															<img
+																class="button-img"
+																src="/energieausweis-erstellen/FORM/img/datenblatt.webp"
+																alt="Datenblatt"
+															/>
+															<span
+																style="color:black;font-weight:bold;"
+																>Datenblatt</span
+															>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<hr class="trenner_form" />
+	
+							<div
+								class="form-group col-12 col-md-12"
+								style="padding:0;"
+							>
+								<div class="">
+									<div class="row">
+										<div class="form-group col-12 col-md-6">
+										</div>
+	
+										<div class="form-group col-12 col-md-6">
+											<div
+												class="row"
+												style="margin-left:0;margin-right:0; padding:0;"
+											>
+												<div class="form-group col-md-6">
+													<label class="control-label">
+														<span
+															class="help1"
+															data-toggle="tooltip"
+															data-html="true"
+															title="
+		<div class='TT'>
+		Wir helfen Ihnen bei der Eingabe. Kurze Fragen zum Formular oder der Ausweisart werden kostenfrei telefonisch beantwortet (bis 5min). Bitte kontaktieren Sie uns unter 040/209339850. Gerne nehmen wir Ihnen die Arbeit ab - Fordern Sie unseren Offline Service an und klicken auf -Hilfe anfordern- 
+		</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question mark"
+																class="mark20"
+															/>
+														</span>
+	
+														<!--<span class="help1" data-toggle="tooltip" data-html="true" title="
+		<div class='TT'>
+		Gerne nehmen wir Ihnen die Arbeit ab - Fordern Sie unseren Offline Service an und klicken auf -Hilfe anfordern- 
+		</div>">
+															<img src="/energieausweis-erstellen/FORM/img/question-mark.png" alt="question mark" class="mark20">
+														</span>-->
+													</label>
+													<input
+														class="weiterbutton"
+														onclick="javascript:toggle('hilfeann')"
+														id="hilfeaww"
+														type="button"
+														value="Hilfe anfordern"
+													/>
+												</div>
+	
+												<div class="form-group col-md-6">
+													<label class="control-label">
+														<span
+															class="help1"
+															data-toggle="tooltip"
+															data-html="true"
+															title="
+		<div class='TT'>
+		Hier gehts weiter zur Eingabe Ihrer Kundendaten.
+		</div>"
+														>
+															<img
+																src="/energieausweis-erstellen/FORM/img/question-mark.png"
+																alt="question mark"
+																class="mark20"
+															/>
+														</span></label
+													>
+													<input
+														class="weiterbutton"
+														id="weiter"
+														type="submit"
+														name="submit2"
+														value="weiter"
+													/>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!-- 2-row-close -->
+							</div>
+	
+							<div
+								class="form-group col-md-12"
+								style="display:none;"
+								id="hilfeann"
+							>
+								<div class="form-group col-md-12 pop_help">
+									<div class="form-group col-md-12">
+										Gerne helfen wir Ihnen wenn Sie nicht
+										weiterkommen oder Fragen haben. Kurze Fragen
+										zum Formular oder der Ausweisart werden
+										kostenfrei telefonisch unter <a
+											href="tel:+4940209339850"
+											>040/209339850</a
+										> beantwortet (bis 5min). Sollten Sie Unterstützung
+										bei der Erstellung benötgen oder lieber die Arbeit
+										von unserem Ingenieurbüro erledigen lassen, bieten
+										wir Ihnen folgende Hilfen an. Bitte treffen Sie
+										Ihre Auswahl und klicken auf weiter:
+									</div>
+	
+									<div
+										class="row"
+										style="margin:0em 0em 0em 2em;"
+									>
+										<div class="form-group col-md-10"></div>
+										<div class="form-group col-md-2"></div>
+									</div>
+	
+									<div
+										class="row"
+										style="margin:0em 0em 0em 2em;"
+									>
+										<div class="form-group col-md-7">
+											Verbrauchsausweis online inkl.
+											ausführlicher telefonischer Beratung für
+											60 € inkl. MwSt.
+										</div>
+										<div class="form-group col-md-5">
+											<input
+												type="radio"
+												class="IGanlass"
+												id="Produkttb2"
+												value="ptb"
+												name="Produkt"
+											/>
+										</div>
+									</div>
+									<div
+										class="row"
+										style="margin:0em 0em 0em 2em;"
+									>
+										<div class="form-group col-md-7">
+											Verbrauchsausweis offline für 180 €
+											inkl. MwSt. (Sie schicken uns 3
+											Verbrauchsabrechnungen zu)
+										</div>
+										<div class="form-group col-md-5">
+											<input
+												type="radio"
+												class="IGanlass"
+												id="Produktof2"
+												value="pof"
+												name="Produkt"
+											/>
+										</div>
+									</div>
+									<div
+										class="row"
+										style="margin:0em 0em 0em 2em;"
+									>
+										<div class="form-group col-md-7">
+											Bedarfsausweis offline für 290 € inkl.
+											MwSt. (Sie schicken uns Grundriss- und
+											Ansichtspläne zu)
+										</div>
+										<div class="form-group col-md-5">
+											<input
+												type="radio"
+												class="IGanlass"
+												id="Produktbof2"
+												value="pbof"
+												name="Produkt"
+											/>
+										</div>
+									</div>
+	
+									<div class="form-group col-md-12">
+										<br />
+										<input
+											class="weiterbutton cancel"
+											id="weiterzlu"
+											type="submit"
+											name="submit2"
+											value="weiter"
+										/>
+									</div>
+								</div>
+							</div><!-- 2-container-close -->
+	
+							<input type="hidden" id="AN_WW_01" name="AN_WW_01" />
+							<input type="hidden" id="AN_WW_02" name="AN_WW_02" />
+							<input type="hidden" id="AN_WW_03" name="AN_WW_03" />
+							<input type="hidden" id="von1" name="von1" />
+							<input type="hidden" id="von2" name="von2" />
+							<input type="hidden" id="von3" name="von3" />
+	
+							<input type="hidden" id="bis1" name="bis1" />
+							<input type="hidden" id="bis2" name="bis2" />
+							<input type="hidden" id="bis3" name="bis3" />
+	
+							<input
+								type="hidden"
+								id="BRSUmrechnungsfaktor"
+								name="BRSUmrechnungsfaktor"
+							/>
+							<input
+								type="hidden"
+								id="BRSUmrechnungsfaktor1"
+								name="BRSUmrechnungsfaktor1"
+							/>
+							<input
+								type="hidden"
+								id="BRSPrimärenergiefaktor"
+								name="BRSPrimärenergiefaktor"
+							/>
+							<input
+								type="hidden"
+								id="BRSPrimärenergiefaktor1"
+								name="BRSPrimärenergiefaktor1"
+							/>
+	
+							<input
+								type="hidden"
+								id="BRSHeizwertfaktor"
+								name="BRSHeizwertfaktor"
+							/>
+							<input
+								type="hidden"
+								id="BRSHeizwertfaktor1"
+								name="BRSHeizwertfaktor1"
+							/>
+	
+							<input type="hidden" id="Coe" name="Coe" />
+							<input type="hidden" id="Coe2" name="Coe2" />
+							<input type="hidden" id="Coekg" name="Coekg" />
+	
+							<input
+								type="hidden"
+								id="Klimafaktor1"
+								name="Klimafaktor1"
+							/>
+							<input
+								type="hidden"
+								id="Klimafaktor2"
+								name="Klimafaktor2"
+							/>
+							<input
+								type="hidden"
+								id="Klimafaktor3"
+								name="Klimafaktor3"
+							/>
+							<input type="hidden" id="T_EEV" name="T_EEV" />
+							<input type="hidden" id="T_PEV" name="T_PEV" />
+							<input type="hidden" id="AN" name="AN" />
+							<input
+								type="hidden"
+								id="ausweisarte"
+								name="ausweisarte"
+								value="VA"
+							/>
+							<input
+								type="hidden"
+								id="pflichtausweis"
+								name="pflichtausweis"
+							/>
+							<input type="hidden" id="baujahr" name="baujahr" />
+							<input type="hidden" id="anlass" name="anlass" />
+							<input type="hidden" id="wohnungen" name="wohnungen" />
+							<input type="hidden" id="sanstat" name="sanstat" />
+							<input type="hidden" id="Erledigt" name="Erledigt" />
+							<input type="hidden" name="eingabeid" />
+							<input type="hidden" name="recode" />
+							<input type="hidden" id="heightwr" name="heightwr" />
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</AusweisLayout>

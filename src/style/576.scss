@@ -43,7 +43,7 @@ body {
 	background-color: rgb(255, 255, 255);
 	margin-top: 0px;
 	padding: 0% 2%;
-	width: calc(100% - 4%);
+	width: 100%;
 }
 
 .only-form-mainContent {
@@ -86,30 +86,6 @@ body {
 }
 
 .mainContent h2 {
-	font-weight: normal;
-	font-size: 1rem;
-	position: relative;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	margin: 1em 0em;
-}
-
-.mainContent h2::before {
-	content: "";
-	width: 12px;
-	height: 12px;
-	border-radius: 4px;
-	background: #f5b691;
-	position: absolute;
-	-ms-flex-item-align: center;
-	-ms-grid-row-align: center;
-	align-self: center;
-	left: -20px;
-	top: 10px;
-}
-
-.mainContent h3 {
 	font-weight: normal;
 	font-size: 1rem;
 	position: relative;
@@ -821,19 +797,6 @@ td {
 	font-size: 1.4em;
 	margin-bottom: -.3em;
 	position: relative;
-	padding-left: 1.7em;
-}
-
-.start_infobox .title::before,
-.start_infobox h2::before {
-	content: "";
-	left: .5em;
-	top: .5em;
-	width: 13px;
-	height: 13px;
-	background-color: #ff7d26;
-	position: absolute;
-	border-radius: 50%;
 }
 
 .right-img {
@@ -1080,20 +1043,6 @@ cbutton {
 	padding: 0px;
 	margin: 0px;
 }
-
-.formInput {
-	padding: 8px 20px;
-	width: 100%;
-	outline: none;
-	font-size: 14px;
-	font-family: Abel, Roboto, sand-serif;
-	color: rgb(133, 133, 194);
-	border-style: solid;
-	border-width: 1px;
-	border-color: rgb(219, 219, 219);
-	border-radius: 2px;
-}
-
 .heading_3 {
 	font-size: 12px;
 	font-family: Abel, Roboto, sand-serif;
@@ -1507,29 +1456,6 @@ ul li::before {
 	text-align: center;
 }
 
-h3 {
-	font-weight: normal;
-	font-size: 1.3rem;
-	line-height: 1.4rem;
-	margin: 1em 0 .5em 0;
-	position: relative;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-}
-
-h3::before {
-	content: "";
-	width: 10px;
-	height: 10px;
-	border-radius: 4px;
-	background: #ddd;
-	position: absolute;
-	-ms-flex-item-align: center;
-	-ms-grid-row-align: center;
-	align-self: center;
-	left: -20px;
-}
 
 footer {
 	background: rgb(255, 125, 38);
@@ -1697,13 +1623,6 @@ body .objekt_card:first-of-type {
 .objekt_images img:nth-child(1) {
 	border-bottom-left-radius: 5px;
 	margin-left: 0;
-}
-
-.objekt_makler h3 {
-	color: rgb(168, 168, 168);
-	font-size: 12px;
-	font-weight: 400;
-	margin-bottom: 5px;
 }
 
 /* NOTE MAKLER SYSTEM */

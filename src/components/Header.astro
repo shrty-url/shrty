@@ -1,4 +1,7 @@
 ---
+import { isLoggedIn } from "../lib/UI/isLoggedIn";
+
+const loggedIn = isLoggedIn(Astro);
 ---
 
 <header class="header">
@@ -24,11 +27,11 @@
 		<a
 			class="headerButton"
 			href="/energieausweis-erstellen/verbrauchsausweis-erstellen.php"
-			>Energieausweis&nbsp;erstellen</a
+			>Energieausweis erstellen</a
 		>
 		<a class="headerButton" href="/energieausweis-kontakt.php">Kontakt</a>
-		<a class="headerButton" href="/agb.php">AGB</a>
-		<a class="headerButton" href="/login">Login</a>
+		<a class="headerButton" href="/agb">AGB</a>
+		{loggedIn ? <a class="headerButton" href="/user">Profil</a> : <a class="headerButton" href="/login">Login</a>}
 		<a class="hamburger_menu"
 			><img src="/images/hamburger.png" alt="hamburger" /></a
 		>

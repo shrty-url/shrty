@@ -63,11 +63,7 @@ export class User {
 		}
 
 		const uid = uuid();
-		const hashedPassword = await hashPassword(user.password);
-
-		if (!hashedPassword) {
-			return null;
-		}
+		const hashedPassword = hashPassword(user.password);
 
 		const result = await db<UserType>("users").insert({
 			username: user.username,

@@ -86,12 +86,11 @@ const schema = JSON.stringify({
 
 	<body>
 		<Header />
-		<main class="content">
+		<main class="grid gap-8 p-8 grid-cols-[2fr,8fr] max-w-[1920px] w-full">
 			<SidebarLeft></SidebarLeft>
 			<article class="mainContent">
 				<slot />
 			</article>
-			<SidebarRight></SidebarRight>
 		</main>
 		<Footer />
 	</body>

@@ -6,6 +6,7 @@
 		width: 100%;
 		z-index: 10;
 	}
+
 	.hamburger_menu {
 		align-items: center;
 		display: block;
@@ -17,10 +18,12 @@
 		webkit-box-align: center;
 		webkit-box-pack: center;
 	}
+
 	.hamburger_menu img {
 		height: 20px;
 		width: 20px;
 	}
+
 	.nav-card {
 		background-color: #444f94;
 		display: flex;
@@ -35,6 +38,7 @@
 		z-index: 5;
 		overflow: hidden;
 	}
+
 	.visible {
 		align-content: stretch;
 		align-items: stretch;
@@ -48,7 +52,7 @@
 		padding: 5% 3% 15%;
 		position: absolute;
 		width: 100%;
-		top:149px;
+		top: 149px;
 	}
 
 	.mob-align {
@@ -59,15 +63,19 @@
 	.nav-head-blue {
 		background-color: #444f94 !important;
 	}
+
 	.menuIN {
 		display: none !important;
 	}
+
 	.dropdown {
 		position: relative;
 	}
+
 	.card-menu-option.dropdown:not(.active):hover .dropdown-content {
 		display: none !important;
 	}
+
 	.card-menu-option {
 		background-color: #ff7d26;
 		border-bottom: 1px solid #fff;
@@ -85,33 +93,40 @@
 		webkit-user-select: none;
 		width: auto;
 	}
+
 	.nav-card .card-menu-option:first-child {
 		border-top: 1px solid #fff;
 		border-top-left-radius: 8px;
 		border-top-right-radius: 8px;
 	}
+
 	.nav-card .card-menu-option:last-child {
 		border-bottom: 1px solid #fff;
 		border-bottom-left-radius: 8px;
 		border-bottom-right-radius: 8px;
 	}
+
 	.nav-card .card-menu-option a {
 		color: #fff;
 		text-decoration: none;
 	}
-	.nav-card .card-menu-option:hover > a {
+
+	.nav-card .card-menu-option:hover>a {
 		color: #fff;
 	}
+
 	.nav-card .card-menu-option:hover {
 		background-color: #444f94;
 		color: #fff;
 		text-decoration: none;
 	}
+
 	.active {
 		background-color: #444f94;
 		opacity: 1;
 		transition: opacity 0.75s;
 	}
+
 	.dropdown-content {
 		border: none !important;
 		border-radius: 8px;
@@ -121,13 +136,16 @@
 		position: relative !important;
 		webkit-box-shadow: none !important;
 	}
+
 	.dropdown-content:hover {
 		display: none;
 	}
+
 	.dropdown-content hr {
 		display: none;
 	}
-	.dropdown-content > .card-menu-option {
+
+	.dropdown-content>.card-menu-option {
 		background-color: #dae6f7 !important;
 		border-bottom: 1px solid #fff;
 		color: #303030 !important;
@@ -135,10 +153,12 @@
 		font-size: 17px;
 		font-weight: normal;
 	}
+
 	.droparrow1::after {
 		transform: translate(0, -50%) rotate(90deg) !important;
 		transition: transform 0.25s;
 	}
+
 	.dropdown::after {
 		content: "\276F";
 		font-size: 14px;

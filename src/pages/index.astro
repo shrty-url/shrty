@@ -1,18 +1,18 @@
 ---
-import Widget from '../components/Widget.astro';
+import BoxWithHeading from '../components/BoxWithHeading.astro';
+import Widget from '../components/Widget.svelte';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Energieausweis online erstellen - Online Energieausweis">
 	<h1>Energieausweis online erstellen</h1>
 
-	<Widget />
+	<Widget client:load />
 
 	<h2>GEG gilt ab 1. Mai 2021 und löst die EnEV ab</h2>
-	<div class="pflicht-list">
-		<p class="underline">Folgende Punkte ändern sich:</p>
+	<BoxWithHeading heading="Folgende Punkte ändern sich:">
 		<ul>
-			<li contenteditable="true">
+			<li>
 				Erhöhte Sorgfaltspflicht bei der Erstellung der Energieausweise.
 				Insbesondere zur Einschätzung der Modernisierungsempfehlungen werden
 				jetzt Fotos der relevanten Bereiche von Dach, Fenster, Heizung und
@@ -35,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
 				verplichtend eingeführt.
 			</li>
 		</ul>
-	</div>
+	</BoxWithHeading>
 
 	<h2>
 		Energieausweis nach aktueller GEG (vormals EnEV) geprüft vom Diplom
@@ -61,7 +61,7 @@ import Layout from '../layouts/Layout.astro';
 	040/209 339 850 zur Verfügung.
 	<hr />Mit dem <strong>Energieausweis</strong> werden Wohngebäude und Nichtwohngebäude
 	nach den Vorgaben der Energieeinsparverordnung <a
-		href="/energieausweis-enev-geg.php">EnEV</a
+		href="/enev-zusammenfassung">EnEV</a
 	>
 	energetisch bewertet. Das <a href="https://www.dibt.de/" target="blank"
 		>DIBt</a
@@ -236,7 +236,7 @@ import Layout from '../layouts/Layout.astro';
 	</h3>
 	Der Verbrauchsausweis gibt den Energieverbrauch der Gebäudebewohner in den vergangenen
 	drei Jahren für Heizung und Warmwasserbereitung an. Um den <a
-		href="/energieausweis-enev-geg.php#§-19-EnEV"
+		href="/enev-zusammenfassung#§-19-EnEV"
 		>Energieverbrauchskennwert zu ermitteln</a
 	>, wird der tatsächliche Energieverbrauch mithilfe eines standortbezogenen
 	Klimafaktors bereinigt. Der Durchschnittswert wird dann durch die sogenannte
@@ -249,7 +249,7 @@ import Layout from '../layouts/Layout.astro';
 	energetisch schlechten Gebäude kaum geheizt, so kann der Energieausweis
 	trotzdem sehr gut ausfallen.<h3>Was ist ein Bedarfsausweis?</h3> Der Bedarfsausweis
 	entsteht auf Grundlage einer technischen <a
-		href="/energieausweis-enev-geg.php#§-18-EnEV"
+		href="/enev-zusammenfassung#§-18-EnEV"
 		>Analyse der Bausubstanz und der Heizungsanlage eines Gebäudes</a
 	> und ist unabhängig vom individuellen Nutzerverhalten. Die Farbverlaufsskala im
 	Bedarfsausweis weist zwei verschiedene Werte aus, die sehr unterschiedlich ausfallen
@@ -395,7 +395,7 @@ import Layout from '../layouts/Layout.astro';
 	<h2>Energieausweis online erstellen</h2> Soll Wohneigentum veräußert oder bauliches
 	Teileigentum zum Erwerb angeboten werden, muss dem möglichen Käufer oder Leasingnehmer
 	auf Verlangen unverzüglich ein
-	<a href="energieausweis-enev-geg.php#§-16a-EnEV"
+	<a href="enev-zusammenfassung#§-16a-EnEV"
 		>Energieausweis gezeigt werden</a
 	>. In den meisten Fällen ist hier ein Verbrauchsausweis ausreichend. Auch
 	Mietern oder Pächtern soll der Energieausweis unmittelbaren Aufschluss über
@@ -403,7 +403,7 @@ import Layout from '../layouts/Layout.astro';
 	offerierten Immobilie diesem Auftrag nach der Energieeinsparverordnung nicht
 	nach, drohen Bußgelder bis zu 15 000 Euro. Als Ausnahmen gelten Gebäude mit
 	nicht mehr als 50 m² Fläche sowie Baudenkmäler (<a
-		href="energieausweis-enev-geg.php#§-16-EnEV">§ 16 Abs. 4 EnEV</a
+		href="enev-zusammenfassung#§-16-EnEV">§ 16 Abs. 4 EnEV</a
 	>).Die Deutsche Energie-Agentur GmbH (<a
 		href="https://www.dena.de/"
 		target="blank">dena</a

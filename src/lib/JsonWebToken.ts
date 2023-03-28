@@ -1,4 +1,4 @@
-import * as jwt from "jwt-simple";
+import jwt from "jwt-simple";
 
 export function encodeToken(data: Record<string, any>) {
 	const token = jwt.encode(data, "yIvbgS$k7Bfc+mpV%TWDZAhje9#uJad4", "HS256");

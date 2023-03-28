@@ -10,16 +10,18 @@
 		"astro": "astro",
 		"test:e2e": "cypress run",
 		"test:unit": "vitest",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"build:production": "astro build && node server.js"
 	},
 	"private": true,
 	"dependencies": {
+		"@astrojs/mdx": "^0.18.2",
 		"@astrojs/node": "^5.1.0",
 		"@astrojs/svelte": "^2.0.2",
 		"@astrojs/tailwind": "^3.1.0",
 		"astro": "^2.1.7",
-		"bcrypt": "^5.1.0",
 		"cookiejs": "^2.1.2",
+		"express": "^4.18.2",
 		"jwt-simple": "^0.5.6",
 		"knex": "^2.4.2",
 		"moment": "^2.29.4",
@@ -31,7 +33,6 @@
 		"zod": "^3.21.4"
 	},
 	"devDependencies": {
-		"@types/bcrypt": "^5.0.0",
 		"@types/uuid": "^9.0.1",
 		"@typescript-eslint/eslint-plugin": "^5.36.1",
 		"@typescript-eslint/parser": "^5.36.1",
