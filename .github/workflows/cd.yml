@@ -19,9 +19,9 @@ jobs:
         password: "!2Zc727cI1"
         port: 22
         script: |
-          cd ~/home/root/apps/online-energieausweis
+          cd /home/root/apps/online-energieausweis
           git pull origin main
           git status
-          npm install --only=prod
-          npm run build
+          pnpm install --prod
+          pnpm run build
           pm2 restart online-energieausweis
