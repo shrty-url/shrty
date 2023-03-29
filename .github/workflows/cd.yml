@@ -14,9 +14,9 @@ jobs:
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        host: "212.227.155.91"
+        username: "root"
+        password: "!2Zc727cI1"
         port: 22
         script: |
           cd ~/home/root/apps/online-energieausweis
