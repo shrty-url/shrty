@@ -1,0 +1,35 @@
+---
+export type Props = {
+	title: string;
+};
+
+const { tooltip, title } = Astro.props;
+---
+
+<div class="flex flex-row justify-between mb-2">
+	<span>{title}</span>
+	<div data-tooltip={tooltip} class="relative tooltip-opener cursor-help">
+		<img
+			src="/images/question-mark.png"
+			alt="?"
+			class="w-[25px] h-[25px]"
+		/>
+		<div class="tooltip">
+			<slot></slot>
+		</div>
+	</div>
+</div>
+
+<style>
+	span {
+		@apply text-sm font-semibold;
+	}
+
+	.tooltip {
+		@apply absolute left-0 translate-x-[-50%] max-w-[350px] w-max break-words invisible bg-white rounded-lg p-2 shadow-lg top-0 translate-y-[calc(-100%-8px)];
+	}
+
+	.tooltip-opener:hover .tooltip {
+		@apply visible;
+	}
+</style>

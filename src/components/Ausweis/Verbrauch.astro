@@ -1,0 +1,360 @@
+---
+import HelpLabel from "../HelpLabel.astro";
+---
+
+<div class="w-full flex flex-col">
+	<div class="flex flex-row w-full justify-between">
+		<div class="form-group col-md-2">
+			<HelpLabel title="primäre Heizquelle">
+				Bitte geben Sie drei zusammenhängende Verbrauchsjahre der
+				Heizungsanlage ein. Wenn eine weitere Heizquelle vorhanden sein
+				sollte geben Sie diese rechts bei 'zusätzliche Heizquelle' ein.
+			</HelpLabel>
+			<input
+				type="checkbox"
+				tabindex="-1"
+				class="IGzus1verbrauch1"
+				value=""
+				checked
+				onclick="return false"
+			/>
+		</div>
+
+		<div class="form-group col-md-2">
+			<HelpLabel title="zusätzliche Heizquelle">
+				Wenn eine zusätzliche Heizquelle vorhanden geben Sie hier drei
+				zusammenhängende Verbrauchsjahre ein. Es sollen die gleichen
+				Verbrauchszeiträume wie bei der primären Heizung verwendet
+				werden.
+			</HelpLabel>
+		</div>
+
+		<div class="form-group col-md-2">
+			<HelpLabel title="Brennstoff *">
+				<b>Heizöl:</b> Flüssiger Brennstoff; Heizöl wird aus schwer entflammbaren
+				Anteilen des Erdöls hergestellt.<br /><br />
+				<b>Erdgas H, Erdgas L:</b> Brennbares Naturgas das in unterirdischen
+				Lagerstätten vorkommt. Erdgas H hat im Vergleich zu Erdgas L einen
+				leicht höheren Methangehalt, und daher einen etwas besseren Brennwert.<br
+				/><br />
+				<b>Flüssiggas:</b> Meist Propan, Butan und deren Gemische, die bei
+				Raumtemperatur unter vergleichsweise geringem Druck flüssig bleiben.<br
+				/><br />
+				<b>Braunkohle:</b> Durch Druck und Luftabschluss von organischen
+				Substanzen entstandenes, bräunlich-schwarzes Sedimentgestein.<br
+				/><br />
+				<b>Holz-Pellets:</b> Stäbchenförmige Pellets die vollständig oder
+				überwiegend aus Holz oder Sägenebenprodukten hergestellt werden.<br
+				/><br />
+				<b>Holzhackschnitzel:</b> Mit schneidenden Werkzeugen zerkleinertes
+				Holz.<br /><br />
+				<b>Nahwärme, Fernwärme:</b> Versorgung von thermischer Energie über
+				wärmegedämmte Rohrsysteme. Die Wärme wird dabei örtlich von Heizwerken
+				produziert oder besteht aus Prozesswärme von BHKW's. Im Unterschied
+				zu Fernwärme wird Nahwärme in kleineren Einheiten dezentral realisiert.<br
+				/><br />
+				<b>Strommix:</b> Heizen mit Strom (Nachtspeicher).<br /><br />
+				<b>Koks:</b> Stark kohlenstoffhaltiger Brennstoff.<br /><br />
+			</HelpLabel>
+			<div>
+				<select
+					id="energietraeger_1"
+					name="energietraeger_1"
+					class="form-control CHECK"
+					onfocus="IclearBRS()"
+					required
+					data-msg="Pflichtfeld"
+				>
+					<option id="BRSsel1" value="">Bitte auswählen</option>
+					<!-- TODO: Energieträger aus Datenbank holen -->
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group col-md-2">
+			<HelpLabel title="Einheit *">
+				Bitte geben Sie die Einheit ein. Erdgas wird meist auf der
+				Abrechnung in kWh ausgewiesen. Heizöl liegt meistens in Litern
+				vor. Pellets oder Brennholz in SRm (Schüttraummetern).
+			</HelpLabel>
+			<div>
+				<select
+					id="energietraeger_einheit_heizquelle_1"
+					name="energietraeger_einheit_heizquelle_1"
+					class="form-control CHECK"
+					required
+					data-msg="Pflichtfeld"
+				>
+					<option id="BRSE0" value="">Bitte auswählen</option>
+					<option id="BRSE1" value="kWh"> kWh</option>
+					<option id="BRSE2" value="m³">m³</option>
+					<option id="BRSE3" value="l">l</option>
+					<option id="BRSE4" value="kg">kg</option>
+					<option id="BRSE5" value="SRm"> SRm</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group col-md-2 v2T">
+			<label class="control-label" for="energietraeger_2"
+				>Brennstoff *
+			</label>
+			<div>
+				<select
+					id="energietraeger_2"
+					name="energietraeger_2"
+					class="form-control CHECK"
+					onfocus="IclearBRS1()"
+					disabled
+					required
+					data-msg="Pflichtfeld"
+				>
+					<option id="BRSsel2" value=""> Bitte auswählen</option>
+					<!-- TODO: Energieträger aus Datenbank holen -->
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group col-md-2 v2T">
+			<label
+				class="control-label"
+				for="energietraeger_einheit_heizquelle_2"
+				>Einheit *
+			</label>
+			<div>
+				<select
+					id="energietraeger_einheit_heizquelle_2"
+					name="energietraeger_einheit_heizquelle_2"
+					class="form-control CHECK"
+					disabled
+					required
+					data-msg="Pflichtfeld"
+					style="margin-bottom: 0.5em !important;"
+				>
+					<option id="2BRSE0" value="">Bitte auswählen</option>
+					<option id="2BRSE1" value="kWh"> kWh</option>
+					<option id="2BRSE2" value="m³">m³</option>
+					<option id="2BRSE3" value="l">l</option>
+					<option id="2BRSE4" value="kg">kg</option>
+					<option id="2BRSE5" value="SRm"> SRm</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex flex-row justify-between">
+		<div class="column-first">
+			<div class="input-group-addon">
+				<div class="bis bw">von</div>
+			</div>
+
+			<select
+				name="energieverbrauch_zeitraum_monat"
+				class="form-control rounded-tr-none rounded-br-none"
+				required
+				data-msg="Pflichtfeld"
+				style="font-family: 'Abel',sans-serif;"
+			>
+				<option value="">auswählen</option>
+				<option id="Januar" value="1">Januar</option>
+				<option id="Februar" value="2"> Februar</option>
+				<option id="März" value="3">März</option>
+				<option id="April" value="4">April</option>
+				<option id="Mai" value="5">Mai</option>
+				<option id="Juni" value="6">Juni</option>
+				<option id="Juli" value="7">Juli</option>
+				<option id="August" value="8">August</option>
+				<option id="September" value="9"> September</option>
+				<option id="Oktober" value="10"> Oktober</option>
+				<option id="November" value="11"> November</option>
+				<option id="Dezember" value="12"> Dezember</option>
+			</select>
+
+			<select
+				name="energieverbrauch_zeitraum_jahr"
+				class="form-control klima CHECK"
+				required
+				data-msg="Pflichtfeld"
+				style="font-family: 'Abel',sans-serif;"
+			>
+				<option value="">auswählen</option>
+				<option id="2010" value="2010"> 2010</option>
+				<option id="2011" value="2011"> 2011</option>
+				<option id="2012" value="2012"> 2012</option>
+				<option id="2013" value="2013"> 2013</option>
+				<option id="2014" value="2014"> 2014</option>
+				<option id="2015" value="2015"> 2015</option>
+				<option id="2016" value="2016"> 2016</option>
+				<option id="2017" value="2017"> 2017</option>
+				<option id="2018" value="2018"> 2018</option>
+				<option id="2019" value="2019"> 2019</option>
+			</select>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<div class="bis bw">bis</div>
+			</div>
+			<input
+				id="IGverbrauch1Y2"
+				tabindex="-1"
+				class="form-control"
+				value=""
+				readonly
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<span class="bis">Verbrauch</span>
+			</div>
+			<input
+				id="energieverbrauch_1_heizquelle_1"
+				name="energieverbrauch_1_heizquelle_1"
+				class="form-control input-md zahlen CHECK"
+				type="text"
+				value=""
+				required
+				data-msg="Pflichtfeld"
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<span class="bis">Verbrauch</span>
+			</div>
+			<input
+				id="energieverbrauch_1_heizquelle_2"
+				name="energieverbrauch_1_heizquelle_2"
+				class="form-control input-md zahlen CHECK"
+				type="text"
+				value=""
+				disabled
+			/>
+		</div>
+	</div>
+
+	<div class="flex flex-row justify-between">
+		<div class="column-first">
+			<div class="input-group-addon">
+				<div class="bis bw">von</div>
+			</div>
+			<input
+				id="IGverbrauch2M"
+				tabindex="-1"
+				class="form-control klima CHECK"
+				value=""
+				readonly
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<div class="bis bw">bis</div>
+			</div>
+			<input
+				id="IGverbrauch2Y2"
+				tabindex="-1"
+				class="form-control"
+				value=""
+				readonly
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<span class="bis">Verbrauch</span>
+			</div>
+			<input
+				id="energieverbrauch_2_heizquelle_1"
+				name="energieverbrauch_2_heizquelle_1"
+				class="form-control input-md zahlen CHECK"
+				type="text"
+				value=""
+				required
+				data-msg="Pflichtfeld"
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<span class="bis">Verbrauch</span>
+			</div>
+			<input
+				id="energieverbrauch_2_heizquelle_2"
+				name="energieverbrauch_2_heizquelle_2"
+				class="form-control input-md zahlen CHECK"
+				type="text"
+				value=""
+				disabled
+			/>
+		</div>
+	</div>
+
+	<div class="flex flex-row justify-between">
+		<div class="column-first">
+			<div class="input-group-addon">
+				<div class="bis bw">von</div>
+			</div>
+			<input
+				id="IGverbrauch3M"
+				tabindex="-1"
+				class="form-control klima CHECK"
+				value=""
+				readonly
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<div class="bis bw">bis</div>
+			</div>
+			<input
+				id="IGverbrauch3Y2"
+				tabindex="-1"
+				class="form-control"
+				value=""
+				readonly
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<span class="bis">Verbrauch</span>
+			</div>
+			<input
+				id="energieverbrauch_3_heizquelle_1"
+				name="energieverbrauch_3_heizquelle_1"
+				class="form-control input-md zahlen CHECK"
+				type="text"
+				value=""
+				required
+				data-msg="Pflichtfeld"
+			/>
+		</div>
+
+		<div class="column">
+			<div class="input-group-addon">
+				<span class="bis">Verbrauch</span>
+			</div>
+			<input
+				id="energieverbrauch_3_heizquelle_2"
+				name="energieverbrauch_3_heizquelle_2"
+				class="form-control input-md zahlen CHECK"
+				type="text"
+				value=""
+				disabled
+			/>
+		</div>
+	</div>
+</div>
+
+<style>
+	.column-first {
+		@apply flex flex-row items-center w-[300px];
+	}
+
+	.column {
+		@apply flex flex-row items-center gap-4;
+	}
+</style>

@@ -1,0 +1,152 @@
+---
+import HelpLabel from "../HelpLabel.astro";
+
+---
+
+<div class="GRB">
+	<!-- Anlass für Energieausweis -->
+	<div class="flex flex-col">
+		<label class="control-label CHECK"
+			>Anlass für Energieausweis *
+		</label>
+		<div
+			class="grid grid-cols-3 items-center"
+		>
+			<label class="radio-inline rfs">
+				<input
+					type="radio"
+					value="Neubau"
+					name="IGanlass"
+				/>Neubau</label
+			>
+			<label class="radio-inline rfs"
+				><input
+					type="radio"
+					value="Vermietung"
+					checked
+					name="IGanlass"
+				/>Vermietung</label
+			>
+			<label class="radio-inline rfs"
+				><input
+					type="radio"
+					value="Verkauf"
+					name="IGanlass"
+				/>Verkauf</label
+			>
+			<br />
+			<label class="radio-inline rfs"
+				><input
+					type="radio"
+					value="Modernisierung"
+					name="IGanlass"
+				/>Modernisierung</label
+			>
+			<label class="radio-inline rfs"
+				><input
+					type="radio"
+					value="Sonstiges"
+					name="IGanlass"
+				/>Sonstiges</label
+			>
+		</div>
+	</div>
+
+	<!-- Baujahr Heizung -->
+	<div class="form-group col-md-2">
+		<HelpLabel title="Baujahr Heizung *">
+			Bitte geben Sie hier das Baujahr der
+			Heizungsanlage ein. Sollten
+			unterschiedliche Baujahre vorliegen,
+			dann geben Sie einen Zeitbereich ein <br
+			/>z.B. 1994-2001.
+		</HelpLabel>
+		<div>
+			<input
+				id="IGheizung"
+				name="IGheizung"
+				maxlength="20"
+				class="form-control input-md"
+				type="text"
+				required
+				autocomplete="off"
+				data-msg="Pflichtfeld"
+			/>
+		</div>
+	</div>
+
+	<!-- Baujahr -->
+	<div class="form-group col-md-2">
+		<HelpLabel title="Baujahr Gebäude *">
+			Bitte geben Sie hier das Baujahr des
+			Gebäudes ein. Sollte eine eine
+			grundlegende Sanierung von Dach,
+			Fenster und Heizung stattgefunden
+			haben, dann berücksichtigen Sie das
+			in dem Sie bei Sanierungsstatus
+			-saniert- angeben.
+		</HelpLabel>
+		<div>
+			<input
+				id="IGbaujahr"
+				name="IGbaujahr"
+				maxlength="20"
+				class="form-control input-md CHECK"
+				type="text"
+				required
+				autocomplete="off"
+				data-msg="Pflichtfeld"
+			/>
+		</div>
+	</div>
+
+	<!-- Anzahl der Wohnungen -->
+	<div class="form-group col-md-2">
+		<HelpLabel title="Anz Wohnungen *">
+			Bitte geben Sie hier die Anzahl der
+			Wohnungen ein, die sich im Gebäude
+			befinden.
+		</HelpLabel>
+		<div>
+			<input
+				id="IGanzahl"
+				name="IGanzahl"
+				class="form-control input-md zahlen"
+				type="text"
+				required
+				autocomplete="off"
+				data-msg="Pflichtfeld"
+				maxlength="3"
+			/>
+		</div>
+	</div>
+
+	<!-- Dachgeschoss -->
+	<div class="form-group col-md-2">
+		<HelpLabel title="Sanierungsstatus *">
+			Bitte geben Sie an ob das Gebäude
+			energetisch saniert oder unsaniert
+			ist. Wenn das Dach mindestens 12 cm
+			gedämmt und Heizung sowie Fenster
+			nicht älter als 30 Jahre sind,
+			können Sie saniert auswählen.
+		</HelpLabel>
+		<div>
+			<select
+				id="IGsan"
+				name="IGsan"
+				class="form-control"
+				required
+				data-msg="Pflichtfeld"
+			>
+				<option>Bitte auswählen</option>
+				<option value="san"
+					>saniert</option
+				>
+				<option value="unsan"
+					>unsaniert</option
+				>
+			</select>
+		</div>
+	</div>
+</div>

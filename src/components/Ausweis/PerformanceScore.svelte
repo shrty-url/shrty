@@ -1,20 +1,15 @@
-<div id="view_VA_01" class="col-md-6" style="padding:0px;">
-	<div class="VA_01">
-		<div id="movearea">
-			<div id="pfeil1">
-				<img
-					style="width:100%;"
-					src="/energieausweis-erstellen/FORM/img/pfeil2.png"
-					alt="pfeil"
-				/>
-			</div>
-			<div id="pfeil2">
-				<img
-					style="width:100%;"
-					src="/energieausweis-erstellen/FORM/img/pfeil.png"
-					alt="pfeil"
-				/>
-			</div>
-		</div>
-	</div>
+<div class="w-full rounded-lg border border-[#ffcc03] relative p-2">
+	<img src="/images/SKALA-910.png" alt="Energieeffizienz Skala">
+	<img
+		class="absolute top-2"
+		width="20px"
+		src="/images/pfeil2.png"
+		alt="pfeil"
+	/>
+	<img
+		class="absolute bottom-2"
+		width="20px"
+		src="/images/pfeil.png"
+		alt="pfeil"
+	/>
 </div>
