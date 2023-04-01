@@ -1,0 +1,427 @@
+---
+const prices = [45, 60, 160];
+---
+if ($ausweisart == 'VA') {
+	$P1 = 45;
+	$P2 = 60;
+	$P3 = 160;
+	$P7 = 15;
+	$jsfile = 'VA-inputs.js';
+	$Produkt1 = 'Verbrauchsausweis online für ' . $P1 . ' € inkl. MwSt. als PDF per E-Mail';
+	$Produkt2 = 'Verbrauchsausweis online inkl. Beratung für ' . $P2 . ' € inkl. MwSt. als PDF per E-Mail';
+	$Produkt3 = 'Verbrauchsausweis offline für ' . $P3 . ' € inkl. MwSt. als PDF per E-Mail (Sie schicken uns 3 Verbrauchsabrechnungen)';
+	$datena = '../energieausweis-erstellen/verbrauchsausweis-erstellen.php';
+	$Produkt = 'Verbrauchsausweis';
+}
+if ($ausweisart == 'VANW') {
+	$P1 = 65;
+	$P2 = 80;
+	$P3 = 360;
+	$P7 = 15;
+	$jsfile = 'VANW-inputs.js';
+	$Produkt1 = 'Verbrauchsausweis Gewerbe online für ' . $P1 . ' € inkl. MwSt. als PDF per E-Mail';
+	$Produkt2 = 'Verbrauchsausweis Gewerbe online inkl. Beratung für ' . $P2 . ' € inkl. MwSt. als PDF per E-Mail';
+	$Produkt3 = 'Verbrauchsausweis Gewerbe offline für ' . $P3 . ' € inkl. MwSt. als PDF per E-Mail(Sie schicken uns 3 Verbrauchsabrechnungen)';
+	$datena = '../energieausweis-erstellen/verbrauchsausweis-gewerbe-erstellen.php';
+	$Produkt = 'Verbrauchsausweis Gewerbe';
+}
+if ($ausweisart == 'BA') {
+	$P1 = 75;
+	$P2 = 95;
+	$P7 = 15;
+	$jsfile = 'BA-inputs.js';
+	$Produkt1 = 'Bedarfsausweis online für ' . $P1 . ' € inkl. MwSt. als PDF per E-Mail';
+	$Produkt2 = 'Bedarfsausweis online inkl. Beratung für ' . $P2 . ' € inkl. MwSt. als PDF per E-Mail';
+	$Produkt3 = "";
+	$datena = '../energieausweis-erstellen/bedarfsausweis-erstellen.php';
+	$Produkt = 'Bedarfsausweis';
+}
+$Produkt7 = 'Ausweiskorrektur für ' . $P7 . ' € inkl. MwSt.';
+
+?>
+
+
+<Layout>
+			<div id="wrapper">
+				<div style="padding:0px;">
+					<?php // include_once "$ROOT/public/energieausweis-erstellen/FORM/kaufabschluss-before.php"; ?>
+					<br>
+
+					<div class="col-md-12" id="view">
+						<div id="progress-VA_01" class="row">
+
+							<div id="progress" class="col-md-6" style="width:100%;position:relative;">
+
+								<h1 class="FORM_H1"><?php echo $headART; ?></h1>
+
+								<div class="progressC" style="display:inline-block;position:relative;">
+
+									<div class="progress">
+										<div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+									</div>
+
+									<div>
+										<a href="#">
+											<div class="progress-nr" style="left:0;">1</div>
+										</a>
+										<div class="progress-txt" style="left:-5%;">Gebäudedaten</div>
+									</div>
+
+									<div>
+										<a href="#">
+											<div class="progress-nr" style="left:50%;">2</div>
+										</a>
+										<div class="progress-txt" style="left:45%;">Kundendaten</div>
+									</div>
+
+									<div>
+										<a href="#">
+											<div class="progress-nr" style="left:100%;">3</div>
+										</a>
+										<div class="progress-txt" style="left:94%;">Kaufabschluss</div>
+									</div>
+								</div>
+
+							</div>
+
+							<?php include_once "$ROOT/public/energieausweis-erstellen/FORM/pfeil-view.php"; ?>
+
+							<div id="wrapper-input">
+
+
+								<form id="VA-abschluss" action="FORM/transfer/VA_3to4.php" method="POST" novalidate>
+									<fieldset>
+
+										<div class="col-md-12 EQ-TOP">
+											<div class="row">
+
+
+												<div class="col-md-6 EQ">
+													<div class="GRB">
+
+														<table class="tb_AB">
+															<tr>
+																<td><strong>Produkt:</strong></td>
+																<td><input style="width:100%;" type="text" value="<?php echo $Produkt; ?>" readonly>
+																</td>
+															</tr>
+															<tr>
+																<td><strong>Beschreibung:</strong></td>
+																<td>
+																	<div style="background-color: #fff; padding:1em; border:1px solid #ccc;">
+
+																		Registrierung beim DiBt<br />
+																		Prüfung durch Diplom Ingenieur<br />
+																		Energieausweis Vorschau als PDF<br />
+																	</div>
+																</td>
+															</tr>
+															<tr>
+																<td>Netto-Preis</td>
+																<td><input style="width:100%;text-align:right;" type="text" id="Preisnetto" name="Preisnetto" readonly></td>
+															</tr>
+															<tr>
+																<td>19% gesetzl. MwSt.</td>
+																<td><input style="width:100%;text-align:right;" type="text" id="Preismwst" name="Preismwst" readonly></td>
+															</tr>
+															<tr>
+																<td>Preis inkl. MwSt.</td>
+																<td><input style="width:100%;text-align:right;font-weight:bold;" type="text" id="Preisbrutto" name="Preisbrutto" readonly>
+
+																	<input type="hidden" id="Preiskomplett" name="Preiskomplett" />
+																</td>
+															</tr>
+
+
+
+
+
+														</table>
+
+													</div>
+
+													<hr class="trenner_form" />
+													<div class="GRB">
+
+														<div>
+
+															<strong>Hiermit bestelle ich folgende Version des
+																Energieausweises:<br></strong>
+
+															<table class="ka_zl">
+																<tr>
+																	<td>Verbrauchsausweis online für {prices[0]} € inkl. MwSt. als PDF per E-Mail</td>
+																	<td><input type="radio" id="Preis1" name="Preis" value="<?php echo $P1; ?>" checked/>
+																	</td>
+																</tr>
+																<tr>
+																	<td>Verbrauchsausweis online inkl. Beratung für {prices[1]} € inkl. MwSt. als PDF per E-Mail</td>
+																	<td><input type="radio" id="Preis2" name="Preis" value="<?php echo $P2; ?>" <?php if (session()->get("hilfe") == 1) { echo "checked"; } ?>/>
+																	</td>
+																</tr><tr>
+																<td>Verbrauchsausweis offline für {prices[2]} € inkl. MwSt. als PDF per E-Mail (Sie schicken uns 3 Verbrauchsabrechnungen)</td>
+																	<td><input type='radio' name='Preis'/>
+																	</td>
+																</tr>
+																<tr>
+																	<?php if (session()->get("hilfe") == 4 and $ausweisart == 'VANW') {
+																		echo "<td>Bedarfsausweis Gewerbe offline ab 476 € inkl. MwSt. als PDF per E-Mail (Sie schicken uns Grundriss- und Ansichtspläne zur Angebotserstellung zu)</td>
+<td><input type=\"radio\" id=\"Preis4\" name=\"Preis\" value=\"476\"  CHECKED /></td>
+</tr>
+<tr>";
+																	} ?>
+
+																</tr>
+															</table>
+														</div>
+													</div>
+
+
+													<hr class="trenner_form" />
+
+													<div class="GRB">
+
+														<table class="ka_zl">
+															<strong>Zusatzleistungen:<br></strong>
+
+															<tr>
+																<td>Qualitätsdruck per Post (zusätzlich zur PDF Version)
+																	für 9€ inkl. MwSt.</td>
+																<td><input type="checkbox" class="IGZusatzleistung" id="QD" name="QD" value="x">
+																</td>
+															</tr>
+															<tr>
+																<td>Aushang (für öffentliche Gebäude gesetzlich
+																	vorgeschrieben) für 10€ inkl. MwSt.</td>
+																<td><input type="checkbox" class="IGZusatzleistung" id="AH" name="AH" value="x">
+																</td>
+															</tr>
+															<tr>
+																<td>Same Day Service (Bestellung Werktags vor 12:00 Uhr
+																	– Ausstellung bis 18:00 Uhr am gleichen Tag) für 29€
+																	inkl. MwSt.</td>
+																<td><input type="checkbox" class="IGZusatzleistung" id="SD" name="SD" value="x">
+																</td>
+															</tr>
+															<tr>
+																<td>Telefonische Energieeffizienzberatung für 75€ inkl.
+																	MwSt.</td>
+																<td><input type="checkbox" class="IGZusatzleistung" id="NA" name="NA" value="x">
+																</td>
+															</tr>
+
+														</table>
+													</div>
+
+
+
+													<hr class="trenner_form" />
+
+													<div class="GRB">
+
+
+														<a href='/energieausweis-erstellen/datenblatt.php?id=<?php echo $ausweis->public_id ?>' target="_blank">
+															<div class="pdf-datenblatt">
+																<img class="button-img" src="FORM/img/datenblatt.png" alt="Datenblatt">
+																<span style="color:black;font-weight:bold;">Datenblatt
+																</span>
+															</div>
+														</a>
+
+														<a href='/energieausweis-erstellen/ansichtsausweis.php?id=<?php echo $ausweis->public_id ?>' target="_blank">
+															<div class="pdf-anzeigen">
+																<img class="button-img" src="FORM/img/ausweis.png" alt="Ausweis">
+																<span style="color:black;font-weight:bold;">Ansichtsausweis
+																</span>
+															</div>
+														</a>
+														<div style="clear:both;"></div>
+
+													</div>
+
+
+
+												</div>
+
+
+
+
+
+												<div class="col-md-6 EQ">
+													<div class="GRB2">
+
+														<table class="tb_AB">
+															<tr>
+																<td>Kunde<input style="width:100%;" type="text" value="<?php echo prop($user, "anrede") . " " . prop($user, "vorname") . " " . prop($user, "name"); ?>" readonly>
+																</td>
+															</tr>
+															<tr>
+																<td>Telefon<input style="width:100%;" type="text" value="<?php echo prop($user, "phone"); ?>" readonly></td>
+															</tr>
+															<tr>
+																<td>E-Mail<input style="width:100%;" type="text" value="<?php echo prop($user, "email"); ?>" readonly>
+																</td>
+															</tr>
+
+															<tr>
+																<td colspan="1">
+																	<hr class="trenner_form" />
+																</td>
+															</tr>
+
+															<tr>
+																<td <?php if ($_SESSION['recode'] == 'ohne-makler') {
+																		echo " style=\"display: none;\">";
+																	} ?>>
+																	Rechnungsempfänger<input style="width:100%;" type="text" value="<?php echo $rechnung_adresse['name']; ?>" readonly></td>
+															</tr>
+
+															<tr>
+																<td<?php if ($_SESSION['recode'] == 'ohne-makler') {
+																		echo " style=\"display: none;\">";
+																	} ?>>
+																	Zusatzzeile<input style="width:100%;" type="text" value="<?php echo $rechnung_adresse['zusatzzeile']; ?>" readonly></td>
+															</tr>
+															<tr>
+																<td<?php if ($_SESSION['recode'] == 'ohne-makler') {
+																		echo " style=\"display: none;\">";
+																	} ?>>
+																	Strasse<input style="width:100%;" type="text" value="<?php echo $rechnung_adresse['adresse']; ?>" readonly></td>
+															</tr>
+															<tr>
+																<td<?php if ($_SESSION['recode'] == 'ohne-makler') {
+																		echo " style=\"display: none;\">";
+																	} ?>>
+																	Telefon<input style="width:100%;" type="text" value="<?php echo $rechnung_adresse['telefon']; ?>" readonly></td>
+															</tr>
+															<tr>
+																<td<?php if ($_SESSION['recode'] == 'ohne-makler') {
+																		echo " style=\"display: none;\">";
+																	} ?>>
+																	E-Mail<input style="width:100%;" type="text" value="<?php echo $rechnung_adresse['email']; ?>" readonly>
+																	</td>
+															</tr>
+															<tr>
+																<td<?php if ($_SESSION['recode'] == 'ohne-makler') {
+																		echo " style=\"display: none;\">";
+																	} ?>>
+																	PLZ und Ort<input style="width:100%;" type="text" value="<?php echo $rechnung_adresse['plz'] . " " . $rechnung_adresse['ort']; ?>" readonly></td>
+															</tr>
+															<tr>
+																<td<?php if ($_SESSION['recode'] == 'ohne-makler') {
+																		echo " style=\"display: none;\">";
+																	} ?> colspan="1">
+																	<hr class="trenner_form" />
+																	</td>
+															</tr>
+															<tr>
+																<td>Versandempfänger<input style="width:100%;" type="text" value="<?php echo prop($versand_adresse, "name"); ?>" readonly>
+																</td>
+															</tr>
+															<tr>
+																<td>Zusatzzeile<input style="width:100%;" type="text" value="<?php echo prop($versand_adresse, "zusatzzeile"); ?>" readonly></td>
+															</tr>
+															<tr>
+																<td>Strasse<input style="width:100%;" type="text" value="<?php echo prop($versand_adresse, "adresse"); ?>" readonly></td>
+															</tr>
+															<tr>
+																<td>PLZ und Ort<input style="width:100%;" type="text" value="<?php echo prop($versand_adresse, "plz") . " " . prop($versand_adresse, "ort"); ?>" readonly></td>
+															</tr>
+
+
+														</table>
+
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+
+
+
+										<hr class="trenner_form" />
+
+
+
+										<div style="gap: 30px; display: flex; flex-direction: row; padding: 0 15px;">
+											<div class="GRB gap-md column" style="width: 100%;" id="payment-option-container">
+												<script src="https://js.braintreegateway.com/web/3.88.4/js/local-payment.min.js"></script>
+												<script src="https://js.braintreegateway.com/web/3.88.4/js/client.min.js"></script>
+												<script src="https://js.braintreegateway.com/web/3.88.4/js/paypal-checkout.min.js"></script>
+												<script src="https://js.braintreegateway.com/web/3.88.4/js/hosted-fields.min.js"></script>
+												<input type="hidden" name="payment_id" id="payment_id_input">
+												<input type="hidden" name="payment_nonce" id="payment_nonce_input">
+												<input type="hidden" name="payment_type" id="payment_type_input">
+												<script>
+													const UNIQUE_CUSTOMER_ID = "<?php echo $ausweis->public_id ?>";
+													const BILLING_NAME = "<?php echo $rechnung_adresse['name']; ?>";
+												</script>
+												<script src="/energieausweis-erstellen/FORM/js/braintree-payment.js" async defer></script>
+												<h4>Bitte wählen sie ihre Bezahlmethode aus.</h2>
+													<div class="flex-row justify-between">
+														<div class="column gap-md">
+															<div class="payment-option-card" id="paypal-button">
+																<img src="../../images/paypal.png" class="payment-option-logo">
+																<div class="payment-option-label" aria-label="Zahlen mit PayPal">Zahlen mit PayPal</div>
+															</div>
+															<div class="payment-option-card" id="giropay-button">
+																<img src="../../images/giropay.png" class="payment-option-logo">
+																<div class="payment-option-label" aria-label="Zahlen mit Giropay">Zahlen mit Giropay</div>
+															</div>
+															<div class="payment-option-card" id="sofort-button">
+																<img src="../../images/sofort.png" class="payment-option-logo">
+																<div class="payment-option-label" aria-label="Zahlen mit Sofort">Zahlen mit Sofort</div>
+															</div>
+														</div>
+														<div class="column gap-md">
+															<div class="payment-option-card" id="kreditkarte-button">
+																<img src="../../images/mastercard.png" class="payment-option-logo">
+																<div class="payment-option-label" aria-label="Zahlen mit Kreditkarte">Zahlen mit Kreditkarte</div>
+															</div>
+															<div class="payment-option-card" id="rechnung-button">
+																<img src="../../images/rechnung.png" class="payment-option-logo">
+																<div class="payment-option-label" aria-label="Zahlen mit Rechnung">Zahlen mit Rechnung</div>
+															</div>
+															<div class="payment-option-card" id="sepa-button">
+																<img src="../../images/sepa.png" class="payment-option-logo">
+																<div class="payment-option-label" aria-label="Zahlen mit SEPA über PayPal">SEPA über PayPal</div>
+															</div>
+														</div>
+														
+													</div>
+													
+											</div>
+											<div class="GRB" style="width: 100%; padding: 15px;" id="payment-information-box"></div>
+										</div>
+									<hr class="trenner_form" />
+
+										<div class="form-group col-md-12">
+											<div class="row">
+												<div class="form-group col-md-6 " style="text-align:left; ">"
+
+													<div class="form-group col-md-6 " style="text-align:left; ">
+													<a class="weiterbutton" style="background-color: #31448e;" href=<?php echo $datena; ?>>Daten ändern</a>
+													</div>
+												</div>
+
+
+
+												<?php // TODO: FIX REGNUMMER include("$ROOT/public/energieausweis-erstellen/FORM/scripts/REGNUMMER.php"); 
+												?>
+
+
+											</div>
+										</div>
+
+
+
+									</fieldset>
+								</form>
+
+
+
+							</div>
+						</div>
+					</div>
+				</Layout>

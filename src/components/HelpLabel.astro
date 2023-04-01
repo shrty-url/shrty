@@ -7,12 +7,12 @@ const { tooltip, title } = Astro.props;
 ---
 
 <div class="flex flex-row justify-between mb-2">
-	<span>{title}</span>
+	<label>{title}</label>
 	<div data-tooltip={tooltip} class="relative tooltip-opener cursor-help">
 		<img
 			src="/images/question-mark.png"
 			alt="?"
-			class="w-[25px] h-[25px]"
+			class="w-[20px] h-[20px]"
 		/>
 		<div class="tooltip">
 			<slot></slot>
@@ -21,8 +21,8 @@ const { tooltip, title } = Astro.props;
 </div>
 
 <style>
-	span {
-		@apply text-sm font-semibold;
+	label {
+		@apply text-base font-medium;
 	}
 
 	.tooltip {

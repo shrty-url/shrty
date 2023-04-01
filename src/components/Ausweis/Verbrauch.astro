@@ -2,7 +2,7 @@
 import HelpLabel from "../HelpLabel.astro";
 ---
 
-<div class="w-full flex flex-col">
+<div class="w-full flex flex-col gap-2">
 	<div class="flex flex-row w-full justify-between">
 		<div class="form-group col-md-2">
 			<HelpLabel title="primäre Heizquelle">
@@ -143,17 +143,12 @@ import HelpLabel from "../HelpLabel.astro";
 	</div>
 
 	<div class="flex flex-row justify-between">
-		<div class="column-first">
-			<div class="input-group-addon">
-				<div class="bis bw">von</div>
-			</div>
-
+		<div class="column-first grid grid-cols-2">
+			<span>von</span>
 			<select
 				name="energieverbrauch_zeitraum_monat"
-				class="form-control rounded-tr-none rounded-br-none"
+				class="form-control rounded-tr-none rounded-br-none w-full"
 				required
-				data-msg="Pflichtfeld"
-				style="font-family: 'Abel',sans-serif;"
 			>
 				<option value="">auswählen</option>
 				<option id="Januar" value="1">Januar</option>
@@ -172,10 +167,8 @@ import HelpLabel from "../HelpLabel.astro";
 
 			<select
 				name="energieverbrauch_zeitraum_jahr"
-				class="form-control klima CHECK"
+				class="form-control rounded-tl-none rounded-bl-none w-full"
 				required
-				data-msg="Pflichtfeld"
-				style="font-family: 'Abel',sans-serif;"
 			>
 				<option value="">auswählen</option>
 				<option id="2010" value="2010"> 2010</option>
@@ -192,9 +185,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<div class="bis bw">bis</div>
-			</div>
+			<span>bis</span>
 			<input
 				id="IGverbrauch1Y2"
 				tabindex="-1"
@@ -205,9 +196,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<span class="bis">Verbrauch</span>
-			</div>
+			<span>Verbrauch</span>
 			<input
 				id="energieverbrauch_1_heizquelle_1"
 				name="energieverbrauch_1_heizquelle_1"
@@ -220,9 +209,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<span class="bis">Verbrauch</span>
-			</div>
+			<span>Verbrauch</span>
 			<input
 				id="energieverbrauch_1_heizquelle_2"
 				name="energieverbrauch_1_heizquelle_2"
@@ -236,9 +223,7 @@ import HelpLabel from "../HelpLabel.astro";
 
 	<div class="flex flex-row justify-between">
 		<div class="column-first">
-			<div class="input-group-addon">
-				<div class="bis bw">von</div>
-			</div>
+			<span>von</span>
 			<input
 				id="IGverbrauch2M"
 				tabindex="-1"
@@ -249,9 +234,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<div class="bis bw">bis</div>
-			</div>
+			<span>bis</span>
 			<input
 				id="IGverbrauch2Y2"
 				tabindex="-1"
@@ -262,9 +245,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<span class="bis">Verbrauch</span>
-			</div>
+			<span>Verbrauch</span>
 			<input
 				id="energieverbrauch_2_heizquelle_1"
 				name="energieverbrauch_2_heizquelle_1"
@@ -277,9 +258,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<span class="bis">Verbrauch</span>
-			</div>
+			<span>Verbrauch</span>
 			<input
 				id="energieverbrauch_2_heizquelle_2"
 				name="energieverbrauch_2_heizquelle_2"
@@ -293,9 +272,7 @@ import HelpLabel from "../HelpLabel.astro";
 
 	<div class="flex flex-row justify-between">
 		<div class="column-first">
-			<div class="input-group-addon">
-				<div class="bis bw">von</div>
-			</div>
+			<span>von</span>
 			<input
 				id="IGverbrauch3M"
 				tabindex="-1"
@@ -306,9 +283,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<div class="bis bw">bis</div>
-			</div>
+			<span>bis</span>
 			<input
 				id="IGverbrauch3Y2"
 				tabindex="-1"
@@ -319,9 +294,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<span class="bis">Verbrauch</span>
-			</div>
+			<span>Verbrauch</span>
 			<input
 				id="energieverbrauch_3_heizquelle_1"
 				name="energieverbrauch_3_heizquelle_1"
@@ -334,9 +307,7 @@ import HelpLabel from "../HelpLabel.astro";
 		</div>
 
 		<div class="column">
-			<div class="input-group-addon">
-				<span class="bis">Verbrauch</span>
-			</div>
+			<span>Verbrauch</span>
 			<input
 				id="energieverbrauch_3_heizquelle_2"
 				name="energieverbrauch_3_heizquelle_2"
@@ -351,7 +322,7 @@ import HelpLabel from "../HelpLabel.astro";
 
 <style>
 	.column-first {
-		@apply flex flex-row items-center w-[300px];
+		@apply flex flex-row items-center w-[300px] gap-4;
 	}
 
 	.column {

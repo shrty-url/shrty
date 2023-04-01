@@ -1,0 +1,347 @@
+---
+import PerformanceScore from "~/components/Ausweis/PerformanceScore.svelte";
+import ProgressBar from "~/components/Ausweis/ProgressBar.astro";
+import HelpLabel from "~/components/HelpLabel.astro";
+import AusweisLayout from "~/layouts/AusweisLayout.astro";
+---
+
+<AusweisLayout title="Kundendaten Aufnehmen - IBCornelsen">
+	<div class="col-12">
+		<div class="row">
+			<div class="flex flex-row gap-8 items-center mb-8">
+				<div class="flex flex-col w-full">
+					<h1>Verbrauchsausweis erstellen - 45€</h1>
+					<ProgressBar progress={50} />
+				</div>
+
+				<PerformanceScore />
+			</div>
+
+			<form
+				method="post"
+				target="_self"
+				novalidate
+				class="w-full"
+				action="./kaufabschluss"
+			>
+				<fieldset>
+					<div class="GRB3">
+						<HelpLabel title="Ansprechpartner" />
+						<hr />
+						<div class="flex flex-row w-full justify-between">
+							<!-- Anrede -->
+							<div>
+								<label>Anrede *</label>
+								<div>
+									<select name="Aanrede" class="form-control">
+										<option>bitte auswählen</option>
+										<option value="Herr">Herr</option>
+										<option value="Frau">Frau</option>
+									</select>
+								</div>
+							</div>
+
+							<!-- Titel -->
+							<div>
+								<label>Titel</label>
+								<div>
+									<select name="Atitel" class="form-control">
+										<option>bitte auswählen</option>
+										<option value="Dr.">Dr.</option>
+										<option value="Prof.">Prof.</option>
+										<option value="Prof.Dr."
+											>Prof.Dr.</option
+										>
+										<option value="Dipl.-Ing."
+											>Dipl.-Ing.</option
+										>
+									</select>
+								</div>
+							</div>
+
+							<!-- Vorname -->
+							<div>
+								<label>Vorname *</label>
+								<div>
+									<input
+										name="Avorname"
+										type="text"
+										required
+									/>
+								</div>
+							</div>
+
+							<!-- Nachname -->
+							<div>
+								<label>Nachname *</label>
+								<div>
+									<input
+										name="Anachname"
+										type="text"
+										required
+									/>
+								</div>
+							</div>
+
+							<!-- Telefon -->
+							<div>
+								<label>Telefon</label>
+								<div>
+									<input
+										name="Atelefon"
+										class="form-control input-md zahlen"
+										type="text"
+									/>
+								</div>
+							</div>
+
+							<!-- Email -->
+							<div>
+								<label>E-Mail *</label>
+								<div>
+									<input
+										name="Aemail"
+										class="form-control input-md"
+										type="email"
+										required
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="trenner_form" />
+
+					<div class="GRB3">
+						<HelpLabel title="Rechnungsadresse" />
+						<hr>
+						<!-- Empfänger -->
+
+						<div class="flex flex-row w-full justify-between">
+							<div>
+								<label>Empfänger *</label>
+								<div>
+									<input
+										name="Rempfaenger"
+										type="text"
+										required
+										data-rule-maxlength="100"
+										data-msg-maxlength="max. 100 Zeichen"
+									/>
+								</div>
+							</div>
+
+							<!-- Zusatzzeile -->
+							<div>
+								<label>Zusatzzeile</label>
+								<div>
+									<input
+										name="Rzusatzzeile"
+										class="form-control input-md"
+										type="text"
+										data-rule-maxlength="80"
+										data-msg-maxlength="max. 80 Zeichen"
+									/>
+								</div>
+							</div>
+
+							<!-- Strasse -->
+							<div class="form-group col-md-12">
+								<label>Straße, Hausnummer *</label>
+								<div>
+									<input
+										name="Rstrasse"
+										class="form-control input-md"
+										type="text"
+										required
+										data-rule-maxlength="40"
+										data-msg-maxlength="max. 40 Zeichen"
+									/>
+								</div>
+							</div>
+
+							<!-- PLZ -->
+							<div class="form-group col-md-4 PLZ">
+								<label>PLZ *</label>
+								<div>
+									<input
+										name="Rplz"
+										class="form-control input-md zahlen"
+										onfocus="RclearOrt()"
+										type="text"
+										required
+										maxlength="5"
+									/>
+									<div style="position:relative;"></div>
+								</div>
+							</div>
+
+							<!-- Ort -->
+							<div class="form-group col-md-8">
+								<label>Ort *</label>
+								<div>
+									<input
+										name="Rort"
+										class="form-control input-md"
+										readonly
+										type="text"
+										required
+									/>
+								</div>
+							</div>
+
+							<!-- Telefon -->
+							<div>
+								<label>Telefon</label>
+								<div>
+									<input
+										name="Rtelefon"
+										class="form-control input-md zahlen"
+										type="text"
+									/>
+								</div>
+							</div>
+
+							<!-- Email -->
+							<div>
+								<label>E-Mail</label>
+								<div>
+									<input
+										name="Remail"
+										class="form-control input-md"
+										type="email"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="trenner_form" />
+
+					<div class="GRB3">
+						<HelpLabel title="Versandadresse"></HelpLabel>
+						<hr>
+						<div class="flex flex-row w-full justify-between">
+							<div class="flex flex-row">
+								<label>Abweichende Versandadresse</label>
+								<input
+									type="checkbox"
+								/>
+							</div>
+	
+							<!-- Empfänger -->
+							<div>
+								<label>Empfänger *</label>
+								<div>
+									<input
+										name="Vempfaenger"
+										type="text"
+										readonly
+										required
+										data-rule-maxlength="100"
+										data-msg-maxlength="max. 100 Zeichen"
+									/>
+								</div>
+							</div>
+	
+							<!-- Zusatzzeile -->
+							<div>
+								<label>Zusatzzeile</label>
+								<div>
+									<input
+										name="Vzusatzzeile"
+										class="form-control input-md"
+										type="text"
+										readonly
+										data-rule-maxlength="80"
+										data-msg-maxlength="max. 80 Zeichen"
+									/>
+								</div>
+							</div>
+	
+							<!-- Strasse -->
+							<div class="form-group col-md-12">
+								<label>Straße, Hausnummer *</label>
+								<div>
+									<input
+										name="Vstrasse"
+										class="form-control input-md"
+										type="text"
+										readonly
+										required
+										data-rule-maxlength="40"
+										data-msg-maxlength="max. 40 Zeichen"
+									/>
+								</div>
+							</div>
+	
+							<!-- PLZ -->
+							<div class="form-group col-md-4 VPLZ">
+								<label>PLZ *</label>
+								<div>
+									<input
+										name="Vplz"
+										class="form-control input-md zahlen"
+										onfocus="VclearOrt()"
+										type="text"
+										readonly
+										required
+										maxlength="5"
+									/>
+									<div style="position:relative;"></div>
+								</div>
+							</div>
+	
+							<!-- Ort -->
+							<div class="form-group col-md-8">
+								<label>Ort *</label>
+								<div>
+									<input
+										name="Vort"
+										type="text"
+										readonly
+										required
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="trenner_form" />
+
+					<div class="flex flex-row w-full justify-between">
+						<button>Zurück</button>
+						<button>Weiter</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</AusweisLayout>
+
+<style>
+	.GRB {
+		@apply border-2 border-[#ffcc03] p-4 flex flex-row rounded-lg justify-between w-full;
+		background-color: rgba(252, 234, 187, 0.2);
+	}
+
+	.GRB3 {
+		@apply flex flex-col border-2 border-[#ffcc03] p-4 rounded-lg;
+		background-color: rgba(252, 234, 187, 0.2);
+	}
+
+	input,
+	select {
+		display: block;
+		width: 100%;
+		height: calc(2.25rem + 2px);
+		padding: 0.375rem 0.75rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		color: #495057;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		border-radius: 0.25rem;
+	}
+</style>

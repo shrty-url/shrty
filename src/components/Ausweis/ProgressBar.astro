@@ -1,7 +1,15 @@
+---
+export type Props = {
+	progress: number
+}
+
+const { progress } = Astro.props;
+---
+
 <div class="flex flex-col relative">
 	<div class="progress-section">
 		<div class="w-[85%] left-9 bg-gray-100 absolute h-3 rounded-lg">
-			<div class="bg-green-600 w-[50%] h-3 absolute"></div>
+			<div class="bg-green-600 left-2 h-3 absolute" style={`width: ${progress}%;`}></div>
 		</div>
 		<span>1</span>
 		<span>2</span>

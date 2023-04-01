@@ -86,7 +86,7 @@ const schema = JSON.stringify({
 
 	<body>
 		<Header />
-		<main class="content">
+		<main class="grid gap-6 p-6 grid-cols-[2fr,6fr,2fr] max-w-[1920px] w-full">
 			<SidebarLeft></SidebarLeft>
 			<article class="mainContent">
 				<slot />
@@ -107,16 +107,15 @@ const schema = JSON.stringify({
 		color: #fff !important;
 	}
 
-	* {
-		box-sizing: border-box;
-		font-family: Abel, Roboto, sand-serif;
-	}
-
 	h3 {
 		@apply text-xl font-medium mt-6 mb-4;
 	}
 
 	input {
 		@apply py-2 px-4 w-full outline-none text-lg text-slate-800 border;
+	}
+
+	label {
+		@apply text-base font-semibold;
 	}
 </style>

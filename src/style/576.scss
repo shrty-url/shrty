@@ -52,10 +52,6 @@ body {
 	width: calc(100% - 4px);
 }
 
-.mainContent * {
-	box-sizing: border-box;
-}
-
 .left-sidebar {
 	-ms-grid-row: 1;
 	-ms-grid-column: 1;
@@ -267,10 +263,6 @@ header a {
 
 #OEA_widget {
 	background-color: #f9f8f7 !important;
-}
-
-* {
-	box-sizing: unset;
 }
 
 ::after,
@@ -553,15 +545,6 @@ select {
 	font-weight: 100;
 }
 
-label {
-	margin-bottom: 10px;
-	text-align: left;
-	font-size: .8em;
-	font-weight: 600;
-	line-height: 1.5;
-	color: #212529;
-}
-
 textarea {
 	resize: vertical;
 }
@@ -598,14 +581,6 @@ textarea {
 
 .button-success:hover {
 	background: #218838;
-}
-
-
-
-* {
-	margin: 0;
-	padding: 0;
-	font-family: Abel, Roboto, sand-serif;
 }
 
 .image-list {
@@ -872,19 +847,7 @@ td {
 	white-space: nowrap;
 }
 
-.form-control {
-	display: block;
-	width: 100%;
-	height: calc(2.25rem + 2px);
-	padding: .375rem .75rem;
-	font-size: 1rem;
-	line-height: 1.5;
-	color: #495057;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid #ced4da;
-	border-radius: .25rem;
-}
+
 
 .row * {
 	-webkit-box-sizing: border-box;
