@@ -1,10 +1,6 @@
----
-export type Props = {
-	progress: number
-}
-
-const { progress } = Astro.props;
----
+<script lang="ts">
+	export let progress: number = 0;
+</script>
 
 <div class="flex flex-col relative">
 	<div class="progress-section">

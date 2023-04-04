@@ -1,6 +1,6 @@
 <div class="grid grid-cols-2 gap-4">
 	<div class="rounded-lg border-4 p-4 bg-white">
-		<input type="file" class="image_upload" name="heizung[]" multiple />
+		<input type="file" class="image_upload" multiple />
 
 		<p class="font-bold mb-2">
 			<span class="text-red-500">WICHTIG:</span>

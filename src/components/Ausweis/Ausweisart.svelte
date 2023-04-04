@@ -1,7 +1,11 @@
----
-import HelpLabel from "../HelpLabel.astro";
+<script lang="ts">
+	import HelpLabel from "~/components/HelpLabel.svelte";
 
----
+	export let constructionYear: number;
+	export let apartmentCount: number;
+	export let certificateReason: "Vermietung" | "Neubau" | "Verkauf" | "Modernisierung" | "Sonstiges";
+	export let sanitationStatus: boolean;
+</script>
 
 <div class="GRB">
 	<!-- Anlass für Energieausweis -->
@@ -10,43 +14,47 @@ import HelpLabel from "../HelpLabel.astro";
 			>Anlass für Energieausweis *
 		</label>
 		<div
-			class="grid grid-cols-3 items-center"
+			class="grid grid-cols-2 gap-x-2 items-center lg:grid-cols-3"
 		>
-			<label class="radio-inline rfs">
+			<label class="radio-inline">
 				<input
 					type="radio"
 					value="Neubau"
 					name="IGanlass"
+					bind:group={certificateReason}
 				/>Neubau</label
 			>
-			<label class="radio-inline rfs"
+			<label class="radio-inline"
 				><input
 					type="radio"
 					value="Vermietung"
 					checked
 					name="IGanlass"
+					bind:group={certificateReason}
 				/>Vermietung</label
 			>
-			<label class="radio-inline rfs"
+			<label class="radio-inline"
 				><input
 					type="radio"
 					value="Verkauf"
 					name="IGanlass"
+					bind:group={certificateReason}
 				/>Verkauf</label
 			>
-			<br />
-			<label class="radio-inline rfs"
+			<label class="radio-inline"
 				><input
 					type="radio"
 					value="Modernisierung"
 					name="IGanlass"
+					bind:group={certificateReason}
 				/>Modernisierung</label
 			>
-			<label class="radio-inline rfs"
+			<label class="radio-inline"
 				><input
 					type="radio"
 					value="Sonstiges"
 					name="IGanlass"
+					bind:group={certificateReason}
 				/>Sonstiges</label
 			>
 		</div>
@@ -96,6 +104,7 @@ import HelpLabel from "../HelpLabel.astro";
 				required
 				autocomplete="off"
 				data-msg="Pflichtfeld"
+				bind:value={constructionYear}
 			/>
 		</div>
 	</div>
@@ -116,6 +125,7 @@ import HelpLabel from "../HelpLabel.astro";
 				required
 				autocomplete="off"
 				data-msg="Pflichtfeld"
+				bind:value={apartmentCount}
 				maxlength="3"
 			/>
 		</div>
@@ -137,16 +147,27 @@ import HelpLabel from "../HelpLabel.astro";
 				name="IGsan"
 				class="form-control"
 				required
-				data-msg="Pflichtfeld"
+				bind:value={sanitationStatus}
 			>
-				<option>Bitte auswählen</option>
-				<option value="san"
+				<option disabled>Bitte auswählen</option>
+				<option value={true}
 					>saniert</option
 				>
-				<option value="unsan"
+				<option value={false}
 					>unsaniert</option
 				>
 			</select>
 		</div>
 	</div>
 </div>
+
+<style>
+	input[type="radio"] {
+		width: 15px;
+		height: 15px;
+	}
+
+	.radio-inline {
+		@apply flex items-center;
+	}
+</style>

@@ -1,0 +1,1 @@
+export { default as VerbrauchsausweisContent } from "./VerbrauchsausweisContent.svelte"

@@ -4,8 +4,8 @@ export function dbOpen(): Knex {
 	const db = knex({
 		client: 'pg',
 		connection: {
-			host : '127.0.0.1',
-			port : 5436,
+			host : process.env.DB_CONNECTION,
+			port : Number(process.env.DB_PORT),
 			user : 'main',
 			password : 'hHMP8cd^N3SnzGRR',
 			database : 'main'

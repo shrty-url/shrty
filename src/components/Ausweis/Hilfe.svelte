@@ -1,0 +1,74 @@
+<script lang="ts">
+	let showHelp: boolean = false;
+</script>
+
+<div>
+	<button type="button" on:click={() => (showHelp = !showHelp)}
+		>Hilfe anfordern</button
+	>
+
+	{#if showHelp}
+		<div>
+			<div>
+				Gerne helfen wir Ihnen wenn Sie nicht weiterkommen oder Fragen
+				haben. Kurze Fragen zum Formular oder der Ausweisart werden
+				kostenfrei telefonisch unter <a href="tel:+4940209339850"
+					>040/209339850</a
+				> beantwortet (bis 5min). Sollten Sie Unterstützung bei der Erstellung
+				benötgen oder lieber die Arbeit von unserem Ingenieurbüro erledigen
+				lassen, bieten wir Ihnen folgende Hilfen an. Bitte treffen Sie Ihre
+				Auswahl und klicken auf weiter:
+			</div>
+
+			<div class="flex flex-row justify-between mx-4 my-2">
+				<div class="form-group col-md-7">
+					Verbrauchsausweis online inkl. ausführlicher telefonischer
+					Beratung für 60 € inkl. MwSt.
+				</div>
+				<div class="form-group col-md-5">
+					<input
+						type="radio"
+						class="IGanlass"
+						id="Produkttb1"
+						value="ptb"
+						name="Produkt"
+					/>
+				</div>
+			</div>
+			<div class="flex flex-row justify-between mx-4 my-2">
+				<div class="form-group col-md-7">
+					Verbrauchsausweis offline für 180 € inkl. MwSt. (Sie
+					schicken uns 3 Verbrauchsabrechnungen zu)
+				</div>
+				<div class="form-group col-md-5">
+					<input
+						type="radio"
+						class="IGanlass"
+						id="Produktof1"
+						value="pof"
+						name="Produkt"
+					/>
+				</div>
+			</div>
+			<div class="flex flex-row justify-between mx-4 my-2">
+				<div class="form-group col-md-7">
+					Bedarfsausweis offline für 290 € inkl. MwSt. (Sie schicken
+					uns Grundriss- und Ansichtspläne zu)
+				</div>
+				<div class="form-group col-md-5">
+					<input
+						type="radio"
+						class="IGanlass"
+						id="Produktbof1"
+						value="pbof"
+						name="Produkt"
+					/>
+				</div>
+			</div>
+
+			<div style="text-align:right;">
+				<button>Weiter</button>
+			</div>
+		</div>
+	{/if}
+</div>

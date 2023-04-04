@@ -5,16 +5,25 @@ services:
     container_name: online-energieausweis
     command: pnpm run dev --host
     links:
-      - db
+      - db:database
     environment:
       PORT: 3000
-      DB_CONNECTION: postgres://user:secure1@db/main
+      DB_CONNECTION: database
+      DB_PORT: 5432
       NODE_ENV: "development"
     ports:
       - 3000:3000
     volumes:
       - ./:/online-energieausweis
+    networks:
+      - postgres
   db:
     build: ../database
     ports:
       - "5436:5432"
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge

@@ -1,9 +1,8 @@
----
-import AnsichtsausweisButton from "../AnsichtsausweisButton.svelte";
-import DatenblattButton from "../DatenblattButton.svelte";
-import HelpLabel from "../HelpLabel.astro";
-
----
+<script lang="ts">
+	import AnsichtsausweisButton from "~/components/AnsichtsausweisButton.svelte";
+	import DatenblattButton from "~/components/DatenblattButton.svelte";
+	import HelpLabel from "~/components/HelpLabel.svelte";
+</script>
 
 <div class="grid grid-cols-2 p-4 gap-4">
 			<div class="rounded-lg border-4 p-4 bg-white">

@@ -1,10 +1,7 @@
----
-export type Props = {
-	title: string;
-};
-
-const { tooltip, title } = Astro.props;
----
+<script lang="ts">
+	export let title: string;
+	export let tooltip: string = "";
+</script>
 
 <div class="flex flex-row justify-between mb-2">
 	<label>{title}</label>
