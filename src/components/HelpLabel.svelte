@@ -23,10 +23,10 @@
 	}
 
 	.tooltip {
-		@apply absolute left-0 translate-x-[-50%] max-w-[350px] w-max break-words invisible bg-white rounded-lg p-2 shadow-lg top-0 translate-y-[calc(-100%-8px)];
+		@apply absolute left-0 translate-x-[-50%] max-w-[350px] w-max break-words invisible bg-white rounded-lg p-2 shadow-lg top-0 translate-y-[calc(-100%-8px)] transition-all duration-300 opacity-0;
 	}
 
 	.tooltip-opener:hover .tooltip {
-		@apply visible;
+		@apply visible opacity-100;
 	}
 </style>
