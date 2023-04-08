@@ -31,7 +31,7 @@ export function calculateEnergyPerformanceScore(
 		heatingPortion * (energyConsumptionKWh[2] + additionalEnergyConsumptionKWh[2]) * climateFactors[2] +
 		(waterHeatingPortion / 100) * (energyConsumptionKWh[2] + additionalEnergyConsumptionKWh[2])) /
 	3 /
-	area;
+	(area || 1);
 }
 
 function convertEnergyConsumptionToKWh(consumption: number, conversionFactor: number, calorificValueFactor: number): number {

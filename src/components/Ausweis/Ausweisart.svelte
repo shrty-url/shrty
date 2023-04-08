@@ -111,7 +111,7 @@
 
 	<!-- Anzahl der Wohnungen -->
 	<div class="form-group col-md-2">
-		<HelpLabel title="Anz Wohnungen *">
+		<HelpLabel title="Anzahl Wohnungen *">
 			Bitte geben Sie hier die Anzahl der
 			Wohnungen ein, die sich im Gebäude
 			befinden.

@@ -37,20 +37,24 @@
 
 	export let calorificValueFactor: number;
 
-	$: conversionFactor = fuelList.find((x) => {
-		return x.energietraeger == fuel && x.einheit == unit
-	})?.umrechnungsfaktor || 1;
+	$: conversionFactor =
+		fuelList.find((x) => {
+			return x.energietraeger == fuel && x.einheit == unit;
+		})?.umrechnungsfaktor || 1;
 
-	$: calorificValueFactor = fuelList.find((x) => {
-		return x.energietraeger == fuel && x.einheit == unit
-	})?.heizwertfaktor || 1;
+	$: calorificValueFactor =
+		fuelList.find((x) => {
+			return x.energietraeger == fuel && x.einheit == unit;
+		})?.heizwertfaktor || 1;
 
 	async function fetchClimateFactors() {
-		const url = `/api/climate_factor?start=${month}.01.${year}&end=${month}.01.${year + 2}&accuracy=years&zip=21039`;
+		const url = `/api/climate_factor?start=${month}.01.${year}&end=${month}.01.${
+			year + 2
+		}&accuracy=years&zip=21039`;
 
 		fetch(url)
-			.then(response => response.json())
-			.then(result => {
+			.then((response) => response.json())
+			.then((result) => {
 				climateFactors = Object.values(result.data);
 			});
 	}
@@ -58,9 +62,9 @@
 	const fuelMap: Record<string, string[]> = {};
 	for (const fuel of fuelList) {
 		fuelMap[fuel.energietraeger] = fuelMap[fuel.energietraeger] || [];
-		fuelMap[fuel.energietraeger].push(fuel.einheit)
+		fuelMap[fuel.energietraeger].push(fuel.einheit);
 	}
-	
+
 	let fuel: string = fuelList[0].energietraeger;
 	let unit: string = fuelList[0].einheit;
 </script>
@@ -80,7 +84,7 @@
 				bind:checked={additionalHeating}
 			/>
 		</div>
-		
+
 		<div>
 			<HelpLabel title="Brennstoff *">
 				<b>Heizöl:</b> Flüssiger Brennstoff; Heizöl wird aus schwer
@@ -125,7 +129,11 @@
 				vor. Pellets oder Brennholz in SRm (Schüttraummetern).
 			</HelpLabel>
 			<div>
-				<select name="energietraeger_einheit_heizquelle_1" required bind:value={unit}>
+				<select
+					name="energietraeger_einheit_heizquelle_1"
+					required
+					bind:value={unit}
+				>
 					<option>Bitte auswählen</option>
 					{#each fuelMap[fuel] as unit}
 						<option value={unit}>{unit}</option>
@@ -200,7 +208,7 @@
 			<div class="column">
 				<span>von</span>
 				<input
-					class="klima "
+					class="klima"
 					value={moment(`${month}.01.${year}`)
 						.add("1", "year")
 						.format("MM.Y")}
@@ -210,7 +218,7 @@
 			<div class="column">
 				<span>von</span>
 				<input
-					class="klima "
+					class="klima"
 					value={moment(`${month}.01.${year}`)
 						.add("2", "years")
 						.format("MM.Y")}
@@ -255,8 +263,7 @@
 				<span>Verbrauch</span>
 				<input
 					name="energieverbrauch_1_heizquelle_1"
-					class="input-md zahlen "
-					type="text"
+					type="number"
 					bind:value={energyConsumption[0]}
 					required
 				/>
@@ -265,8 +272,7 @@
 				<span>Verbrauch</span>
 				<input
 					name="energieverbrauch_2_heizquelle_1"
-					class="input-md zahlen "
-					type="text"
+					type="number"
 					bind:value={energyConsumption[1]}
 					required
 				/>
@@ -275,8 +281,7 @@
 				<span>Verbrauch</span>
 				<input
 					name="energieverbrauch_3_heizquelle_1"
-					class="input-md zahlen "
-					type="text"
+					type="number"
 					bind:value={energyConsumption[2]}
 					required
 				/>
@@ -287,8 +292,7 @@
 				<span>Verbrauch</span>
 				<input
 					name="energieverbrauch_1_heizquelle_2"
-					class="input-md zahlen "
-					type="text"
+					type="number"
 					bind:value={additionalEnergyConsumption[0]}
 					disabled={!additionalHeating}
 				/>
@@ -297,8 +301,7 @@
 				<span>Verbrauch</span>
 				<input
 					name="energieverbrauch_2_heizquelle_2"
-					class="input-md zahlen "
-					type="text"
+					type="number"
 					bind:value={additionalEnergyConsumption[1]}
 					disabled={!additionalHeating}
 				/>
@@ -307,8 +310,7 @@
 				<span>Verbrauch</span>
 				<input
 					name="energieverbrauch_3_heizquelle_2"
-					class="input-md zahlen "
-					type="text"
+					type="number"
 					bind:value={additionalEnergyConsumption[2]}
 					disabled={!additionalHeating}
 				/>

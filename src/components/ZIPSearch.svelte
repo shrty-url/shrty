@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ZIPInformation } from "src/lib/ZIPInformation";
+	import Label from "./Label.svelte";
 
 	export let name: string;
 	export let readonly: boolean = false;
@@ -43,7 +44,7 @@
 <div class="relative" use:clickOutside={() => {
 	hideZipDropdown = true;
 }}>
-	<label for={name}>PLZ *</label>
+	<Label name={name}>PLZ *</Label>
 	<input
 		name={name}
 		id={name}

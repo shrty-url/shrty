@@ -1,0 +1,55 @@
+---
+
+import AusweisLayout from "~/layouts/AusweisLayout.astro";
+
+import BedarfsausweisContent from "~/components/Bedarfsausweis/BedarfsausweisContent.svelte";
+---
+<!-- <div class="form-group col-12 col-md-12" style="padding:0;">
+	<div>
+		<div class="row">
+			<div class="form-group col-12 col-md-6">
+				<div class="form-group col-12 col-md-6">
+					<label class="control-label" style="min-width:265px;">
+						<span class="help1" data-toggle="tooltip" data-html="true" title="<div class='TT'>Es werden keine Personenbezogenen Daten gespeichert. Es werden nur die Eingabedaten zum Gebäude auf dieser Formularseite gespeichert.</div>">
+							<img src="/energieausweis-erstellen/FORM/img/question-mark.png" alt="question mark" class="mark20">
+						</span></label>
+					<button type="submit" class="weiterbutton" formaction="speichern.php" formnovalidate></button>
+				</div>
+			</div>
+			<div class="form-group col-12 col-md-6">
+				<div class="form-group col-12 col-md-6 offset-md-6">
+					<label class="control-label">
+						<span class="help1" data-toggle="tooltip" data-html="true" title="<div class='TT'>Wir helfen Ihnen bei der Eingabe. Kurze Fragen zum Formular oder der Ausweisart werden kostenfrei telefonisch beantwortet (bis 5min). Bitte kontaktieren Sie uns unter 040/209339850. Gerne nehmen wir Ihnen die Arbeit ab - Fordern Sie unseren Offline Service an und klicken auf -Hilfe anfordern- </div>">
+							<img src="/energieausweis-erstellen/FORM/img/question-mark.png" alt="question mark" class="mark20">
+						</span>
+					</label>
+					<input class="weiterbutton" onclick="javascript:toggle('hilfean')" style="background-color: #31448e;width:100%;" id="hilfeaw" type="button" value="Hilfe anfordern">
+					<script type='module' src='/energieausweis-erstellen/FORM/js/auto-fill.js' async defer></script>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group col-md-12" id="hilfean" style="display: none">
+		<div class="form-group col-md-12 pop_help">
+			<div class="form-group col-md-12">
+				Gerne helfen wir Ihnen wenn Sie nicht weiterkommen oder Fragen haben. Kurze
+				Fragen zum Formular oder der Ausweisart werden kostenfrei telefonisch unter <a href="tel:+4940209339850">040/209339850</a> beantwortet (bis 5min). Sollten
+				Sie Unterstützung bei der Erstellung benötgen oder lieber die Arbeit von unserem
+				Ingenieurbüro erledigen lassen, bieten wir Ihnen folgende Hilfen an. Bitte
+				treffen Sie Ihre Auswahl und klicken auf weiter:
+			</div>
+			<div class="row" style="margin:0em 0em 0em 2em;">
+				<div class="form-group col-md-7">Bedarfsausweis online inkl. ausführlicher telefonischer Beratung für 95€ inkl. MwSt.</div>
+				<div class="form-group col-md-5"><input type="radio" class="ausstellgrund" value="1" name="hilfe"></div>
+			</div>
+			<div class="form-group col-md-12" style="text-align:right;">
+				<button type="submit" class="weiterbutton">Kundendaten</button>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<AusweisLayout title="Bedarfsausweis erstellen | IBCornelsen">
+	<BedarfsausweisContent></BedarfsausweisContent>
+</AusweisLayout>

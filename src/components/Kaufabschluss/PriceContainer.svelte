@@ -5,19 +5,19 @@
 	export let prices: number[];
 
 	let basePrice: number = prices[0];
-	let Qualitätsdruck: boolean;
+	let Printing: boolean;
 	let Aushang: boolean;
 	let SameDayService: boolean;
-	let TelefonischeBeratung: boolean;
+	let TelephoneAdvice: boolean;
 
-	$: price = basePrice + (Qualitätsdruck ? 9 : 0) + (Aushang ? 10 : 0) + (SameDayService ? 29 : 0) + (TelefonischeBeratung ? 75 : 0);
+	$: price = basePrice + (Printing ? 9 : 0) + (Aushang ? 10 : 0) + (SameDayService ? 29 : 0) + (TelephoneAdvice ? 75 : 0);
 </script>
 
 <div class="GRB">
 	<table>
 		<tr>
 			<td><strong>Produkt:</strong></td>
-			<td><input type="text" value="Verbrauchsausweis" readonly /> </td>
+			<td><strong>Verbrauchsausweis</strong></td>
 		</tr>
 		<tr>
 			<td><strong>Beschreibung:</strong></td>
@@ -34,42 +34,19 @@
 		<tr>
 			<td>Netto-Preis</td>
 			<td
-				><input
-					style="width:100%;text-align:right;"
-					type="text"
-					id="Preisnetto"
-					name="Preisnetto"
-					value={(price * 0.81).toFixed(2) + "€"}
-					readonly
-				/></td
+				><strong>{(price * 0.81).toFixed(2) + "€"}</strong></td
 			>
 		</tr>
 		<tr>
 			<td>19% gesetzl. MwSt.</td>
 			<td
-				><input
-					style="width:100%;text-align:right;"
-					type="text"
-					id="Preismwst"
-					name="Preismwst"
-					value={(price * 0.19).toFixed(2) + "€"}
-					readonly
-				/></td
+				><strong>{(price * 0.19).toFixed(2) + "€"}</strong></td
 			>
 		</tr>
 		<tr>
 			<td>Preis inkl. MwSt.</td>
 			<td
-				><input
-					style="width:100%;text-align:right;font-weight:bold;"
-					type="text"
-					id="Preisbrutto"
-					name="Preisbrutto"
-					value={price + "€"}
-					readonly
-				/>
-
-				<input type="hidden" id="Preiskomplett" name="Preiskomplett" />
+				><strong>{price + "€"}</strong>
 			</td>
 		</tr>
 	</table>
@@ -121,7 +98,7 @@
 				><input
 					type="checkbox"
 					class="IGZusatzleistung"
-					bind:checked={Qualitätsdruck}
+					bind:checked={Printing}
 					name="QD"
 				/>
 			</td>
@@ -160,7 +137,7 @@
 				><input
 					type="checkbox"
 					class="IGZusatzleistung"
-					bind:checked={TelefonischeBeratung}
+					bind:checked={TelephoneAdvice}
 					name="NA"
 				/>
 			</td>

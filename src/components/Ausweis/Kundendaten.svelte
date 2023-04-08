@@ -26,7 +26,7 @@
 			target="_self"
 			novalidate
 			class="w-full"
-			action="./kaufabschluss"
+			action="/kaufabschluss"
 		>
 			<fieldset>
 				<div class="GRB3">

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PerformanceScore from "~/components/Ausweis/PerformanceScore.svelte";
-	import ProgressBar from "~/components/Ausweis/Progressbar.svelte";
+	import Progressbar from "~/components/Ausweis/Progressbar.svelte";
 	import Hilfe from "~/components/Ausweis/Hilfe.svelte";
 	import HelpLabel from "~/components/HelpLabel.svelte";
 	import Verbrauch from "~/components/Ausweis/Verbrauch.svelte";
@@ -11,6 +11,7 @@
 	import DaemmungImage from "~/components/Ausweis/DaemmungImage.svelte";
 	import AusweisPreviewContainer from "~/components/Ausweis/AusweisPreviewContainer.svelte";
 	import { calculateEnergyPerformanceScore } from "./energyPerformanceCalculation";
+	import ZipSearch from "../ZIPSearch.svelte";
 
 	let additionalHeating: boolean = false;
 	let heatedWaterIncluded: boolean = false;
@@ -25,34 +26,48 @@
 
 	let area = 0;
 	let energyPerformance = 0;
+	let zip: string = "";
+	let city: string = "";
 
 	$: {
-		energyPerformance = calculateEnergyPerformanceScore(energyConsumption, additionalEnergyConsumption, heatedWaterPortion, climateFactors, area * (hasCellar ? 1.35 : 1.2), conversionFactor, calorificValueFactor);
-		console.log(energyPerformance)
+		energyPerformance = calculateEnergyPerformanceScore(
+			energyConsumption,
+			additionalEnergyConsumption,
+			heatedWaterPortion,
+			climateFactors,
+			area * (hasCellar ? 1.35 : 1.2),
+			conversionFactor,
+			calorificValueFactor
+		);
 	}
 
 	let constructionYear: number;
 	let apartmentCount: number;
-	let certificateReason: "Vermietung" | "Neubau" | "Verkauf" | "Modernisierung" | "Sonstiges";
+	let certificateReason:
+		| "Vermietung"
+		| "Neubau"
+		| "Verkauf"
+		| "Modernisierung"
+		| "Sonstiges";
 	let sanitationStatus: boolean;
 
 	let needsRequirementCertificate: boolean = false;
 
-	$: needsRequirementCertificate = (
+	$: needsRequirementCertificate =
 		(constructionYear < 1978 &&
-		apartmentCount <= 4 &&
+			apartmentCount <= 4 &&
 			sanitationStatus == false &&
-			(certificateReason == "Vermietung" || certificateReason == "Sonstiges")) ||
-			certificateReason == "Neubau" ||
+			(certificateReason == "Vermietung" ||
+				certificateReason == "Sonstiges")) ||
+		certificateReason == "Neubau" ||
 		certificateReason == "Modernisierung" ||
-		certificateReason == "Verkauf"
-	)
+		certificateReason == "Verkauf";
 </script>
 
 <div class="flex flex-row gap-8 items-center mb-8">
 	<div class="flex flex-col w-full">
 		<h1>Verbrauchsausweis erstellen - 45€</h1>
-		<ProgressBar progress={0} />
+		<Progressbar progress={0} />
 	</div>
 
 	<PerformanceScore performance={energyPerformance} />
@@ -73,9 +88,17 @@
 			<Label>A - Prüfung der Ausweisart</Label>
 		</div>
 
-		<Ausweisart bind:constructionYear bind:apartmentCount bind:certificateReason bind:sanitationStatus />
+		<Ausweisart
+			bind:constructionYear
+			bind:apartmentCount
+			bind:certificateReason
+			bind:sanitationStatus
+		/>
 
-		<div class="flex flex-col p-4" class:hidden={!needsRequirementCertificate}>
+		<div
+			class="flex flex-col p-4"
+			class:hidden={!needsRequirementCertificate}
+		>
 			<div class="form-group col-md-9">
 				<HelpLabel
 					title="Sie benötigen einen Bedarfsausweis. Bitte führen Sie hier Ihre Eingabe für den Bedarfsausweis fort und klicken auf den Button:"
@@ -88,7 +111,9 @@
 			</div>
 
 			<div class="form-group col-md-3">
-				<a class="button" href="/bedarfsausweis">Bedarfsausweis erstellen</a>
+				<a class="button" href="/bedarfsausweis"
+					>Bedarfsausweis erstellen</a
+				>
 			</div>
 		</div>
 
@@ -101,104 +126,91 @@
 			>
 		</div>
 
-		<div class="col-md-12">
-			<div class="GRB">
-				<!-- Strasse -->
-				<div class="form-group col-md-4">
-					<HelpLabel title="Straße, Hausnummer *">
-						Bitte geben Sie hier die Straße und Hausnummer des
-						Gebäudes ein.
-					</HelpLabel>
-					<div>
-						<input
-							name="IGstrasse"
-							class="input-md strasse"
-							type="text"
-							autocomplete="off"
-							required
-							data-msg-minlength="min. 5 Zeichen"
-							data-msg-maxlength="max. 40 Zeichen"
-						/>
-					</div>
+		<div class="GRB">
+			<!-- Strasse -->
+			<div class="form-group col-md-4">
+				<HelpLabel title="Straße, Hausnummer *">
+					Bitte geben Sie hier die Straße und Hausnummer des
+					Gebäudes ein.
+				</HelpLabel>
+				<div>
+					<input
+						name="IGstrasse"
+						class="input-md strasse"
+						type="text"
+						autocomplete="off"
+						required
+						data-msg-minlength="min. 5 Zeichen"
+						data-msg-maxlength="max. 40 Zeichen"
+					/>
 				</div>
+			</div>
 
-				<!-- PLZ -->
-				<div class="form-group col-md-4 PLZ">
-					<HelpLabel title="PLZ *">
-						Bitte geben Sie hier die PLZ des Gebäudes ein.
-					</HelpLabel>
-					<div>
-						<input
-							name="IGplz"
-							class="input-md klima CHECK"
-							type="text"
-							required
-							autocomplete="off"
-							maxlength="5"
-						/>
-						<div />
-					</div>
-				</div>
+			<!-- PLZ -->
+			<div class="form-group col-md-4 PLZ">
+				<ZipSearch bind:zip bind:city name="zip" />
+			</div>
 
-				<!-- IGort: readonly entfernt - Nelson -->
-				<div class="form-group col-md-4">
-					<HelpLabel title="Ort *">
-						Ort des Gebäudes wird automatisch ermittelt.
-					</HelpLabel>
-					<div>
-						<input
-							name="IGort"
-							class="input-md buchstaben"
-							type="text"
-						/>
-					</div>
+			<!-- IGort: readonly entfernt - Nelson -->
+			<div class="form-group col-md-4">
+				<HelpLabel title="Ort *">
+					Ort des Gebäudes wird automatisch ermittelt.
+				</HelpLabel>
+				<div>
+					<input
+						name="IGort"
+						class="input-md buchstaben"
+						readonly={true}
+						bind:value={city}
+						type="text"
+					/>
 				</div>
-				<!-- Wohnfläche -->
-				<div class="form-group col-md-4">
-					<HelpLabel title="Wohnfläche m² *">
-						Bitte geben Sie hier die beheizte Wohnfläche in m² ein.
-						Dabei handelt es sich um die Wohnfläche abzüglich
-						vorhandener Flächen die sich außerhalb des Gebäudes
-						befinden. (Balkone, Terassen,etc.).
-					</HelpLabel>
-					<div>
-						<input
-							name="IGflaeche"
-							maxlength="4"
-							class="input-md zahlen CHECK"
-							required
-							autocomplete="off"
-							data-rule-minlength="2"
-							data-msg-minlength="min. 2 Zeichen"
-							bind:value={area}
-						/>
-					</div>
+			</div>
+			<!-- Wohnfläche -->
+			<div class="form-group col-md-4">
+				<HelpLabel title="Wohnfläche m² *">
+					Bitte geben Sie hier die beheizte Wohnfläche in m² ein.
+					Dabei handelt es sich um die Wohnfläche abzüglich
+					vorhandener Flächen die sich außerhalb des Gebäudes
+					befinden. (Balkone, Terassen,etc.).
+				</HelpLabel>
+				<div>
+					<input
+						name="IGflaeche"
+						maxlength="4"
+						type="number"
+						required
+						autocomplete="off"
+						data-rule-minlength="2"
+						data-msg-minlength="min. 2 Zeichen"
+						bind:value={area}
+					/>
 				</div>
+			</div>
 
-				<!-- Keller -->
-				<div class="form-group col-md-4">
-					<Label>Keller *</Label>
-					<div>
-						<select name="IGkeller" class="CHECK" required bind:value={hasCellar}>
-							<option>Bitte auswählen</option>
-							<option value={false}>nicht vorhanden</option>
-							<option value={false}>unbeheizt</option>
-							<option value={true}>beheizt</option>
-						</select>
-					</div>
+			<!-- Keller -->
+			<div class="form-group col-md-4">
+				<Label>Keller *</Label>
+				<div>
+					<select name="IGkeller" required bind:value={hasCellar}>
+						<option>Bitte auswählen</option>
+						<option value={false}>nicht vorhanden</option>
+						<option value={false}>unbeheizt</option>
+						<option value={true}>beheizt</option>
+					</select>
 				</div>
+			</div>
 
-				<!-- Dachgeschoss -->
-				<div class="form-group col-md-4">
-					<Label>Dachgeschoss *</Label>
-					<div>
-						<select name="IGdach" class="form-control" required>
-							<option>Bitte auswählen</option>
-							<option value="dnein">nicht vorhanden</option>
-							<option value="dub">unbeheizt</option>
-							<option value="dbh">beheizt</option>
-						</select>
-					</div>
+			<!-- Dachgeschoss -->
+			<div class="form-group col-md-4">
+				<Label>Dachgeschoss *</Label>
+				<div>
+					<select name="IGdach" class="form-control" required>
+						<option>Bitte auswählen</option>
+						<option value="dnein">nicht vorhanden</option>
+						<option value="dub">unbeheizt</option>
+						<option value="dbh">beheizt</option>
+					</select>
 				</div>
 			</div>
 		</div>
@@ -210,7 +222,14 @@
 		</div>
 
 		<div class="GRB">
-			<Verbrauch bind:additionalHeating bind:energyConsumption bind:additionalEnergyConsumption bind:climateFactors bind:conversionFactor bind:calorificValueFactor />
+			<Verbrauch
+				bind:additionalHeating
+				bind:energyConsumption
+				bind:additionalEnergyConsumption
+				bind:climateFactors
+				bind:conversionFactor
+				bind:calorificValueFactor
+			/>
 		</div>
 
 		<hr />
@@ -247,7 +266,6 @@
 				<input
 					name="IGwarmwasser"
 					maxlength="2"
-					class="input-md zahlen CHECK"
 					type="text"
 					bind:value={heatedWaterPortion}
 					disabled={!heatedWaterIncluded}
@@ -264,7 +282,6 @@
 				<input
 					name="IGwarmwasser2"
 					maxlength="3"
-					class="input-md zahlen"
 					type="text"
 					autocomplete="off"
 					disabled={!additionalHeating}
@@ -443,7 +460,6 @@
 					<input
 						name="IGleer"
 						maxlength="2"
-						class="input-md zahlen"
 						type="text"
 						autocomplete="off"
 					/>
@@ -768,12 +784,10 @@
 
 		<hr />
 
-		<div class="form-group col-md-12">
-			<Label
-				>G - Hier können Sie ein Gebäudebild hochladen und sich Ihren
-				Energieausweis als PDF anschauen</Label
-			>
-		</div>
+		<Label
+			>G - Hier können Sie ein Gebäudebild hochladen und sich Ihren
+			Energieausweis als PDF anschauen</Label
+		>
 
 		<AusweisPreviewContainer />
 
@@ -784,25 +798,25 @@
 	</fieldset>
 </form>
 
-<style is:global>
+<style>
 	:global(.GRB) {
 		@apply border-2 border-[#ffcc03] p-4 flex flex-row rounded-lg justify-between w-full;
 		background: linear-gradient(
-		135deg,
-		rgba(252, 234, 187, 1) 0%,
-		rgba(253, 235, 189, 1) 52%,
-		rgba(251, 223, 147, 1) 100%
-	);
+			135deg,
+			rgba(252, 234, 187, 1) 0%,
+			rgba(253, 235, 189, 1) 52%,
+			rgba(251, 223, 147, 1) 100%
+		);
 	}
 
 	:global(.GRB3) {
 		@apply flex flex-col border-2 border-[#ffcc03] p-4 rounded-lg;
 		background: linear-gradient(
-		135deg,
-		rgba(252, 234, 187, 1) 0%,
-		rgba(253, 235, 189, 1) 52%,
-		rgba(251, 223, 147, 1) 100%
-	);
+			135deg,
+			rgba(252, 234, 187, 1) 0%,
+			rgba(253, 235, 189, 1) 52%,
+			rgba(251, 223, 147, 1) 100%
+		);
 	}
 
 	:global(.headline) {
