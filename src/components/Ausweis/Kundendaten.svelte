@@ -223,26 +223,6 @@
 </div>
 
 <style>
-	:global(.GRB) {
-		@apply border-2 border-[#ffcc03] p-4 flex flex-row rounded-lg justify-between w-full;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
-	:global(.GRB3) {
-		@apply flex flex-col border-2 border-[#ffcc03] p-4 rounded-lg;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
 	input,
 	select {
 		display: block;

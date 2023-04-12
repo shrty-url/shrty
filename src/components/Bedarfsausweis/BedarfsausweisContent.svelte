@@ -12,7 +12,8 @@
 	import { hotWaterProductionTypes } from "./HotWaterProductionTypes";
 	import AusweisPreviewContainer from "../Ausweis/AusweisPreviewContainer.svelte";
 
-	let constructionYear: number;
+	let baujahrGebaeude: number;
+	let baujahrHeizungsAnlage: number;
 	let apartmentCount: number;
 	let certificateReason:
 		| "Vermietung"
@@ -78,10 +79,11 @@
 		<hr />
 		<Label>A - Prüfung der Ausweisart</Label>
 		<Ausweisart
-			bind:constructionYear
+			bind:baujahrGebaeude
 			bind:apartmentCount
 			bind:certificateReason
 			bind:sanitationStatus
+			bind:baujahrHeizungsAnlage
 		/>
 		<hr />
 		<Label
@@ -1348,51 +1350,3 @@
 		<input type="hidden" name="ausweisart" value="BA" />
 	</fieldset>
 </form>
-
-<style>
-	:global(.GRB) {
-		@apply border-2 border-[#ffcc03] p-4 flex flex-row rounded-lg justify-between w-full;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
-	:global(.GRB3) {
-		@apply flex flex-col border-2 border-[#ffcc03] p-4 rounded-lg;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
-	:global(.box) {
-		@apply border-2 border-[#ffcc03] p-4 rounded-lg;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
-	:global(.headline) {
-		@apply text-lg;
-	}
-
-	:global(.radio-inline) {
-		@apply flex flex-row gap-2;
-	}
-
-	:global(.checkbox-inline) {
-		@apply flex flex-row gap-2;
-	}
-
-	:global(input[type="checkbox"]) {
-		width: auto;
-	}
-</style>

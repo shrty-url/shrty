@@ -1,10 +1,11 @@
 <script lang="ts">
 	import HelpLabel from "~/components/HelpLabel.svelte";
 
-	export let constructionYear: number;
+	export let baujahrGebaeude: number;
 	export let apartmentCount: number;
 	export let certificateReason: "Vermietung" | "Neubau" | "Verkauf" | "Modernisierung" | "Sonstiges";
 	export let sanitationStatus: boolean;
+	export let baujahrHeizungsAnlage: number;
 </script>
 
 <div class="GRB">
@@ -71,14 +72,10 @@
 		</HelpLabel>
 		<div>
 			<input
-				id="IGheizung"
 				name="IGheizung"
-				maxlength="20"
-				class="form-control input-md"
-				type="text"
+				type="number"
 				required
-				autocomplete="off"
-				data-msg="Pflichtfeld"
+				bind:value={baujahrHeizungsAnlage}
 			/>
 		</div>
 	</div>
@@ -96,15 +93,11 @@
 		</HelpLabel>
 		<div>
 			<input
-				id="IGbaujahr"
 				name="IGbaujahr"
-				maxlength="20"
-				class="form-control input-md CHECK"
-				type="text"
+				type="number"
 				required
 				autocomplete="off"
-				data-msg="Pflichtfeld"
-				bind:value={constructionYear}
+				bind:value={baujahrGebaeude}
 			/>
 		</div>
 	</div>

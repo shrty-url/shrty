@@ -121,4 +121,50 @@ const schema = JSON.stringify({
 	input:disabled {
 		text-indent: -9999px;
 	}
+
+	.GRB {
+		@apply border-2 border-[#ffcc03] p-4 flex flex-row rounded-lg justify-between w-full;
+		background: linear-gradient(
+			135deg,
+			rgba(252, 234, 187, 1) 0%,
+			rgba(253, 235, 189, 1) 52%,
+			rgba(251, 223, 147, 1) 100%
+		);
+	}
+
+	.GRB3 {
+		@apply flex flex-col border-2 border-[#ffcc03] p-4 rounded-lg;
+		background: linear-gradient(
+			135deg,
+			rgba(252, 234, 187, 1) 0%,
+			rgba(253, 235, 189, 1) 52%,
+			rgba(251, 223, 147, 1) 100%
+		);
+	}
+
+	.box {
+		@apply border-2 border-[#ffcc03] p-4 rounded-lg;
+		background: linear-gradient(
+			135deg,
+			rgba(252, 234, 187, 1) 0%,
+			rgba(253, 235, 189, 1) 52%,
+			rgba(251, 223, 147, 1) 100%
+		);
+	}
+
+	.headline {
+		@apply text-lg;
+	}
+
+	.radio-inline {
+		@apply flex flex-row gap-2;
+	}
+
+	.checkbox-inline {
+		@apply flex flex-row gap-2;
+	}
+
+	input[type="checkbox"] {
+		width: auto;
+	}
 </style>

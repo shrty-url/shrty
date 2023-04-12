@@ -1,0 +1,169 @@
+---
+import moment from "moment";
+import Checkbox from "~/components/Checkbox.svelte";
+import PDFLayout from "~/layouts/PDFLayout.astro";
+
+---
+
+<PDFLayout title="">
+	<div class="flex flex-col gap-2">
+		<div class="rounded-lg border-4 border-pdf-yellow-bright p-2">
+			<div class="flex flex-row gap-2 items-end">
+				<h1 class="text-4xl font-bold">ENERGIEAUSWEIS</h1>
+				<span class="text-lg font-semibold">für Wohngebäude</span>
+			</div>
+			<p>gemäß den §§ 16 ff. Energieeinsparverordnung (EnEV) vom ¹ <span class="bg-gray-300 p-0.5">18. November 2013</span></p>
+		</div>
+		<div class="flex flex-row gap-2">
+			<div class="bg-pdf-yellow-light rounded-lg w-full h-10 items-center justify-between flex flex-row px-2">
+				<p class="text-xs">Gültig bis: <span>{moment().add("10", "years").format("DD. MMM. YYYY")}</span></p>
+				<p class="text-xs">Ausweis ID <span>1293819</span></p>
+				<p class="text-xs">Registriernummer wird nach Zahlungseingang vergeben</p>
+			</div>
+			<span class="w-10 h-10 rounded-full border-pdf-yellow-bright border-4 bg-pdf-yellow-light flex items-center justify-center font-bold text-xl">1</span>
+		</div>
+		<div class="border-4 border-pdf-yellow-bright bg-pdf-yellow-light rounded-lg">
+			<h2>Gebäude</h2>
+			<div class="flex flex-col">
+				<div class="flex flex-row">
+					<table>
+						<tr>
+							<td>Gebäudetyp</td>
+							<td>Einfamilienhaus</td>
+						</tr>
+						<tr>
+							<td>Adresse</td>
+							<td>Mönckebergstraße, 22049 Hamburg</td>
+						</tr>
+						<tr>
+							<td>Gebäudeteil</td>
+							<td>Gesamtgebäude</td>
+						</tr>
+						<tr>
+							<td>Baujahr Gebäude ³</td>
+							<td>1962</td>
+						</tr>
+						<tr>
+							<td>Baujahr Wärmeerzeuger <sup>3</sup> <sup>4</sup></td>
+							<td>1974</td>
+						</tr>
+						<tr>
+							<td>Anzahl Wohnungen</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>Gebäudenutzfläche (A<sub>N</sub>)</td>
+							<td>
+								<table>
+									<tr>
+										<td>182m²</td>
+										<td class="flex flex-row items-center h-full w-full gap-2 pl-2">
+											<input type="checkbox">
+											nach § 19 EnEV aus der Wohnfläche ermittelt
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>Wesentliche Energieträger für<br> Heizung und Warmwasser <sup>3</sup></td>
+							<td>Erdgas, BraunkohleBraunkohle, Strommix</td>
+						</tr>
+					</table>
+					<div class="w-[35%]">
+						<img src="" alt="">
+					</div>
+				</div>
+				<div>
+					<table>
+
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<h2>Hinweise zu den Angaben über die energetische Qualität des Gebäudes</h2>
+			<div class="bg-white w-full">
+				<p>Die energetische Qualität eines Gebäudes kann durch die Berechnung des <strong>Energiebedarfs</strong> unter Annahme von
+					standardisierten Randbedingungen oder durch die Auswertung des <strong>Energieverbrauchs</strong> ermittelt werden. Als Bezugsfläche dient die energetische Gebäudenutzfläche nach der EnEV, die sich in der Regel von den allgemeinen
+					Wohnflächenangaben unterscheidet. Die angegebenen Vergleichswerte sollen überschlägige Vergleiche ermöglichen (<strong>Erläuterungen - siehe Seite 5</strong>). Teil des Energieausweises sind die Modernisierungsempfehlungen (Seite 4).</p>
+				<Checkbox checked={true}>
+					Der Energieausweis wurde auf der Grundlage von Berechnungen des <strong>Energiebedarfs</strong> erstellt (Energiebedarfsausweis). Die Ergebnisse sind auf <strong>Seite 2</strong> dargestellt. Zusätzliche Informationen zum Verbrauch sind freiwillig.
+				</Checkbox>
+				<Checkbox checked={false}>
+					Der Energieausweis wurde auf der Grundlage von Auswertungen des <strong>Energieverbrauchs</strong> erstellt (Energieverbrauchsausweis). Die Ergebnisse sind auf <strong>Seite 3</strong> dargestellt.
+				</Checkbox>
+				<div class="flex flex-row justify-between items-center w-[80%]">
+					<p>Datenerhebung Bedarf/Verbrauch durch</p>
+					<Checkbox checked={true}>
+						Eigentümer
+					</Checkbox>
+					<Checkbox checked={false}>
+						Aussteller
+					</Checkbox>
+				</div>
+				<Checkbox>Dem Energieausweis sind zusätzliche Informationen zur energetischen Qualität beigefügt (freiwillige Angabe).</Checkbox>
+			</div>
+		</div>
+		<div class="box">
+			<h2>Hinweise zur Verwendung des Energieausweises</h2>
+			<p class="bg-white">Der Energieausweis dient lediglich der Information. Die Angaben im Energieausweis beziehen sich auf das
+				gesamte Wohngebäude oder den oben bezeichneten Gebäudeteil. Der Energieausweis ist lediglich dafür gedacht,
+				einen überschlägigen Vergleich von Gebäuden zu ermöglichen.</p>
+		</div>
+		<div class="flex flex-row gap-2">
+			<div class="bg-pdf-yellow-light rounded-lg p-2 w-full h-20">
+				<p>Aussteller:</p>
+			</div>
+			<div class="bg-pdf-yellow-light rounded-lg p-2 w-full h-20">
+				<p>Aussteller:</p>
+			</div>
+		</div>
+	</div>
+</PDFLayout>
+
+<style is:global>
+	table {
+		@apply w-full h-full;
+	}
+
+	td > table td {
+		@apply px-0 py-0 border-t-0 border-b-0;
+	}
+
+	td:has(table) {
+		@apply p-0;
+	}
+
+	td > table td:first-child {
+		@apply border-l-0;
+	}
+
+	td > table td:last-child {
+		@apply border-r-0;
+	}
+
+	td {
+		@apply border border-black px-1 text-xs py-0.5;
+	}
+
+	td:not(:first-child) {
+		@apply bg-white;
+	}
+
+	h2 {
+		@apply font-bold text-sm;
+	}
+
+	p, label {
+		@apply text-xs;
+	}
+
+	.box {
+		@apply border-4 border-pdf-yellow-bright bg-pdf-yellow-light rounded-lg;
+	}
+
+	.box > * {
+		@apply px-1 py-0.5;
+	}
+</style>

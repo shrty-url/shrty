@@ -41,7 +41,8 @@
 		);
 	}
 
-	let constructionYear: number;
+	let baujahrGebaeude: number;
+	let baujahrHeizungsAnlage: number;
 	let apartmentCount: number;
 	let certificateReason:
 		| "Vermietung"
@@ -54,7 +55,7 @@
 	let needsRequirementCertificate: boolean = false;
 
 	$: needsRequirementCertificate =
-		(constructionYear < 1978 &&
+		(baujahrGebaeude < 1978 &&
 			apartmentCount <= 4 &&
 			sanitationStatus == false &&
 			(certificateReason == "Vermietung" ||
@@ -62,6 +63,19 @@
 		certificateReason == "Neubau" ||
 		certificateReason == "Modernisierung" ||
 		certificateReason == "Verkauf";
+
+	function automatischAusfüllen() {
+		baujahrGebaeude = 1962;
+		baujahrHeizungsAnlage = 1974;
+		sanitationStatus = true;
+		apartmentCount = 1;
+		certificateReason = "Vermietung";
+		energyConsumption = [15000, 14000, 16000]
+		area = 152;
+		hasCellar = true;
+		heatedWaterIncluded = true;
+		heatedWaterPortion = 18;
+	}
 </script>
 
 <div class="flex flex-row gap-8 items-center mb-8">
@@ -79,7 +93,10 @@
 	>
 		<div class="flex flex-row justify-between">
 			<a class="button" href="/speichern">Später Weitermachen</a>
-			<Hilfe />
+			<div class="flex gap-4">
+				<Hilfe />
+				<button on:click={automatischAusfüllen}>Automatisch Ausfüllen</button>
+			</div>
 		</div>
 
 		<hr />
@@ -89,10 +106,11 @@
 		</div>
 
 		<Ausweisart
-			bind:constructionYear
+			bind:baujahrGebaeude
 			bind:apartmentCount
 			bind:certificateReason
 			bind:sanitationStatus
+			bind:baujahrHeizungsAnlage
 		/>
 
 		<div
@@ -797,41 +815,3 @@
 		</div>
 	</fieldset>
 </form>
-
-<style>
-	:global(.GRB) {
-		@apply border-2 border-[#ffcc03] p-4 flex flex-row rounded-lg justify-between w-full;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
-	:global(.GRB3) {
-		@apply flex flex-col border-2 border-[#ffcc03] p-4 rounded-lg;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
-	:global(.headline) {
-		@apply text-lg;
-	}
-
-	:global(.radio-inline) {
-		@apply flex flex-row gap-2;
-	}
-
-	:global(.checkbox-inline) {
-		@apply flex flex-row gap-2;
-	}
-
-	:global(input[type="checkbox"]) {
-		width: auto;
-	}
-</style>

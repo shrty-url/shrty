@@ -96,35 +96,3 @@
 		</div>
 	</div>
 </form>
-
-<style>
-	:global(.GRB) {
-		@apply flex flex-col border-2 border-[#ffcc03] p-4 rounded-lg;
-		background: linear-gradient(
-			135deg,
-			rgba(252, 234, 187, 1) 0%,
-			rgba(253, 235, 189, 1) 52%,
-			rgba(251, 223, 147, 1) 100%
-		);
-	}
-
-	:global(.headline) {
-		@apply text-lg;
-	}
-
-	:global(.radio-inline) {
-		@apply flex flex-row gap-2;
-	}
-
-	:global(.checkbox-inline) {
-		@apply flex flex-row gap-2;
-	}
-
-	:global(input[type="checkbox"]) {
-		width: auto;
-	}
-
-	:global(table, td) {
-		@apply border-none;
-	}
-</style>

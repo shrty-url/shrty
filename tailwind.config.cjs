@@ -10,6 +10,8 @@ module.exports = {
 				bg: "white",
 				"status-error": "red",
 				"status-success": "green",
+				"pdf-yellow-bright": "#f3cb00",
+				"pdf-yellow-light": "#fff6ca"
 			},
 		},
 	},

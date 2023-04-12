@@ -23,6 +23,7 @@ export function calculateEnergyPerformanceScore(
 	let energyConsumptionKWh = energyConsumption.map((x) => convertEnergyConsumptionToKWh(x, conversionFactor, calorificValueFactor))
 	let additionalEnergyConsumptionKWh = additionalEnergyConsumption.map((x) => convertEnergyConsumptionToKWh(x, conversionFactor, calorificValueFactor))
 	let heatingPortion = 1 - (waterHeatingPortion / 100);
+	
 
 	return (heatingPortion * (energyConsumptionKWh[0] + additionalEnergyConsumptionKWh[0]) * climateFactors[0] +
 		(waterHeatingPortion / 100) * (energyConsumptionKWh[0] + additionalEnergyConsumptionKWh[0]) +

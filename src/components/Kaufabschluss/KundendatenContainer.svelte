@@ -56,3 +56,17 @@
 		</tr>
 	</table>
 </div>
+
+<style>
+	table tr {
+		@apply border-none;
+	}
+
+	table, td, tr {
+		@apply border-0 p-2;
+	}
+
+	tr:not(:last-child) {
+		@apply border-b border-b-[rgba(0,0,0,0.1)];
+	}
+</style>
