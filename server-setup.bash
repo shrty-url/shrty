@@ -28,4 +28,4 @@ npm i -g pnpm;
 pnpm install;
 
 # Run docker-compose
-docker-compose --build -f docker-compose.prod.yml up;
+docker-compose -f docker-compose.prod.yml up;

@@ -6,3 +6,5 @@ app.use(express.static('dist/client/'))
 app.use(ssrHandler);
 
 app.listen(80);
+
+console.log("Server listening on port 80");
