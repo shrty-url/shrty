@@ -1,0 +1,16 @@
+---
+import { db } from "src/lib/shared";
+
+const { shortcode } = Astro.params;
+
+const result = await db("links").increment("views", 1).where("shortcode", shortcode).returning(db.raw("url, id"));
+
+if (result.length == 0) {
+	return Astro.redirect("/404");
+}
+
+// Insert a new view into the database.
+await db("views").insert({ links_id: result[0].id });
+
+return Astro.redirect(result[0].url)
+---

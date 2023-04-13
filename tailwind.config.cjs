@@ -4,14 +4,6 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				primary: "rgb(255, 125, 38)",
-				secondary: "rgb(68, 79, 148)",
-				"gray-primary": "rgb(146, 151, 153)",
-				bg: "white",
-				"status-error": "red",
-				"status-success": "green",
-				"pdf-yellow-bright": "#f3cb00",
-				"pdf-yellow-light": "#fff6ca"
 			},
 		},
 	},

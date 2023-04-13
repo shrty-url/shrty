@@ -1,0 +1,26 @@
+---
+import knex from "knex";
+import { db } from "src/lib/shared";
+import LookupContent from "~/components/LookupContent.svelte";
+import Layout from "~/layouts/Layout.astro";
+
+const { shortcode } = Astro.params;
+
+const result = await db("links")
+	.select(db.raw("*, links.id AS link_id"))
+	.leftJoin("hosts", db.raw("hosts.id = links.hosts_id"))
+	.where("shortcode", shortcode)
+	.first();
+
+if (!result) {
+	return Astro.redirect("/404");
+}
+
+const timeSeriesData = await db("views")
+	.where("links_id", result.link_id)
+	.orderBy("date", "asc");
+---
+
+<Layout title="URL Lookup - Shrty">
+	<LookupContent data={timeSeriesData} info={result} client:load></LookupContent>
+</Layout>

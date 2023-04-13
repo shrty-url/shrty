@@ -1,23 +1,23 @@
 version: '3'
 services:
-  online-energieausweis:
+  shrty:
     build: ./
-    container_name: online-energieausweis
+    container_name: shrty
     command: pnpm run dev --host
     links:
-      - db:database
+      - shrty-db
     environment:
       PORT: 3000
-      DB_CONNECTION: database
+      DB_CONNECTION: shrty-db
       DB_PORT: 5432
       NODE_ENV: "development"
     ports:
       - 3000:3000
     volumes:
-      - ./:/online-energieausweis
+      - ./:/shrty
     networks:
       - postgres
-  db:
+  shrty-db:
     build: ../database
     ports:
       - "5436:5432"

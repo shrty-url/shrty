@@ -1,121 +1,31 @@
 ---
-import "../style/global.scss"
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import SidebarLeft from '../components/SidebarLeft.astro';
-import SidebarRight from '../components/SidebarRight.astro';
+import Header from "~/components/Header.svelte";
+import "../style/global.scss";
 
 export interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
-
-const schema = JSON.stringify({
-	'@context': 'http://schema.org',
-	'@type': 'Corporation',
-	name: 'IB Cornelsen',
-	alternateName: 'online-energieausweis.org',
-	url: 'https://online-energieausweis.org',
-	logo: 'https://online-energieausweis.org/ib-cornelsen.png',
-	address: {
-		'@type': 'PostalAddress',
-		streetAddress: 'Katendeich 5A',
-		addressLocality: 'Hamburg',
-		postalCode: '21035',
-		addressCountry: 'Deutschland',
-		email: 'info@online-energieausweis.org',
-	},
-	contactPoint: {
-		'@type': 'ContactPoint',
-		telephone: '+49-040-209339850',
-		faxNumber: '+49-040-209339859',
-		contactType: 'customer service',
-		areaServed: 'DE',
-		availableLanguage: 'German',
-	},
-});
 ---
-
+	
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<script type="application/ld+json" set:html={schema}></script>
-		<link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
-		<link rel="stylesheet" href="style/main.css" />
-		<link rel="stylesheet" href="style/bootstrap.min.css" />
-
-		<meta
-			name="description"
-			content="✅ Jetzt Ihren Energieausweis online erstellen. Erhalten Sie Ihren online Energieausweis rechtssicher und nach aktueller GEG (vormals EnEV) vom Diplom Ingenieur geprüft."
-		/>
-		<link rel="canonical" href="https://online-energieausweis.org/" />
-
-		<meta property="og:locale" content="de_DE" />
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:title"
-			content="Energieausweis online erstellen - Online Energieausweis"
-		/>
-		<meta
-			property="og:description"
-			content="✅ Jetzt Ihren Energieausweis online erstellen. Erhalten Sie Ihren online Energieausweis rechtssicher und nach aktueller GEG (vormals EnEV) vom Diplom Ingenieur geprüft."
-		/>
-		<meta property="og:url" content="https://online-energieausweis.org/" />
-		<meta property="og:site_name" content="Energieausweis online erstellen" />
-
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta
-			name="twitter:description"
-			content="✅ Jetzt Ihren Energieausweis online erstellen. Erhalten Sie Ihren online Energieausweis rechtssicher und nach aktueller GEG (vormals EnEV) vom Diplom Ingenieur geprüft."
-		/>
-		<meta
-			name="twitter:title"
-			content="Energieausweis online erstellen - Online Energieausweis"
-		/>
-		<meta
-			name="twitter:image"
-			content="https://online-energieausweis.org/images/energieausweis-online-erstellen.jpg"
-		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<title>
 			{title || 'Energieausweis online erstellen - Online Energieausweis'}
 		</title>
 	</head>
 
 	<body>
-		<Header />
-		<main class="grid gap-6 p-6 grid-cols-[2fr,6fr,2fr] max-w-[1920px] w-full">
-			<SidebarLeft></SidebarLeft>
-			<article class="mainContent">
+		<main class="w-full h-[100vh]">
+			<Header></Header>
+			<article class="h-full max-w-[1200px] w-full mx-auto py-8">
 				<slot />
 			</article>
-			<SidebarRight></SidebarRight>
 		</main>
-		<Footer />
 	</body>
 </html>
-
-<style is:global>
-	body {
-		min-height: 100vh;
-	}
-
-	button, .button {
-		@apply px-8 py-2 bg-secondary rounded-lg text-white font-medium hover:shadow-lg transition-all hover:underline active:bg-blue-900 text-center cursor-pointer;
-		color: #fff !important;
-	}
-
-	h3 {
-		@apply text-xl font-medium mt-6 mb-4;
-	}
-
-	input {
-		@apply py-1 px-2 w-full rounded-lg outline-none text-lg text-slate-800 border;
-	}
-
-	label {
-		@apply text-base font-semibold;
-	}
-</style>

@@ -1,0 +1,19 @@
+---
+import knex from "knex";
+import { db } from "src/lib/shared";
+import AnalyticsList from "~/components/AnalyticsList.svelte";
+import Layout from "~/layouts/Layout.astro";
+
+const { shortcode } = Astro.params;
+
+const result = await db("links")
+	.select("*").orderBy("id", "desc");
+
+if (!result) {
+	return Astro.redirect("/404");
+}
+---
+
+<Layout title="URL Lookup - Shrty">
+	<AnalyticsList links={result}></AnalyticsList>
+</Layout>

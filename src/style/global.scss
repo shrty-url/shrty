@@ -1,13 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-
-* {
-	font-weight: 400;
-	box-sizing: border-box;
-	font-family: "Abel", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+h1 {
+	@apply text-4xl font-semibold;
 }
 
-@import './576';
-@import './768';
-@import './992';
+h2 {
+	@apply text-2xl font-semibold;
+}
 
-@import "./smaller-768";
+p, td {
+	@apply text-lg font-normal;
+}
+
+td {
+	@apply border px-4 py-2;
+}
+
+a {
+	@apply text-blue-700 hover:underline font-medium;
+}
+
+input {
+	@apply px-4 py-2 text-lg outline-none border rounded-lg hover:bg-gray-50 focus:bg-gray-100 transition-colors;
+
+	&:disabled {
+		@apply bg-gray-200;
+	}
+}
