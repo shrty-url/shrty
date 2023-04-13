@@ -6,8 +6,8 @@ import * as fs from "fs";
 import * as http from "http";
 import * as https from "https";
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/shrty.it/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/shrty.it/fullchain.pem', 'utf8');
+const privateKey = fs.readFileSync('/shrty/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/shrty/fullchain.pem', 'utf8');
 
 const credentials = {
 	key: privateKey,

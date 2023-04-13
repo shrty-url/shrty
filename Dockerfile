@@ -5,6 +5,7 @@ RUN npm i -g pnpm
 
 WORKDIR /shrty
 COPY ./package.json ./
+COPY /etc/letsencrypt/live/shrty.it/ /shrty/
 RUN pnpm install --prod
 COPY . .
 
