@@ -61,6 +61,19 @@
 					},
 				],
 			},
+			options: {
+				scales: {
+					y: {
+						type: "linear",
+						ticks: {
+							precision: 0
+						},
+						suggestedMax: 50,
+						position: "left",
+						beginAtZero: true,
+					}
+				}
+			}
 		});
 	});
 </script>
