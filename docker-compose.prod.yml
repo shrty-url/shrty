@@ -3,7 +3,6 @@ services:
   shrty:
     build: ./
     container_name: shrty
-    command: sh run-prod.bash
     links:
       - shrty-db
     environment:
