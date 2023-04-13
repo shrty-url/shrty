@@ -28,4 +28,4 @@ npm i -g pnpm;
 pnpm install;
 
 # Run docker-compose
-touch ./.env-prod && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/shrty.it/privkey.pem | base64)" > ./.env-prod && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/shrty.it/fullchain.pem | base64)" > ./.env-prod && docker-compose -f docker-compose.prod.yml --env-file ./.env-prod up;
+touch ./.env-prod && echo "PRIVATE_KEY=$(cat /etc/letsencrypt/live/shrty.it/privkey.pem | base64 | tr -d '\n')" >> ./.env-prod && echo "CERTIFICATE=$(cat /etc/letsencrypt/live/shrty.it/fullchain.pem | base64 | tr -d '\n')" >> ./.env-prod && docker-compose -f docker-compose.prod.yml --env-file ./.env-prod up;

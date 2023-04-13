@@ -3,6 +3,8 @@ services:
   shrty:
     build: ./
     container_name: shrty
+    env_file:
+      - ./.env-prod
     links:
       - shrty-db
     environment:
