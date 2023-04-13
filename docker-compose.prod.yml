@@ -1,0 +1,30 @@
+version: '3'
+services:
+  shrty:
+    build: ./
+    container_name: shrty
+    command: sh run-prod.bash
+    links:
+      - shrty-db
+    environment:
+      PORT: 3000
+      DB_CONNECTION: shrty-db
+      DB_PORT: 5432
+      NODE_ENV: "production"
+    ports:
+      - 80:3000
+      - 443:3000
+    volumes:
+      - ./:/shrty
+    networks:
+      - postgres
+  shrty-db:
+    build: ../database
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge

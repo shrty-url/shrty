@@ -7,5 +7,3 @@ WORKDIR /shrty
 COPY ./package.json ./
 RUN pnpm install --prod
 COPY . .
-
-CMD ["pnpm", "run", "build:production"]
