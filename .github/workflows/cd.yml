@@ -14,14 +14,14 @@ jobs:
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
-        host: "212.227.155.91"
+        host: "212.227.45.4"
         username: "root"
-        password: "!2Zc727cI1"
+        password: "M!q@f8pJK&"
         port: 22
         script: |
-          cd /home/root/apps/online-energieausweis
+          cd ~/shrty/
           git pull origin main
           git status
           pnpm install --prod
           pnpm run build
-          pm2 restart online-energieausweis
+          bash launch.bash
