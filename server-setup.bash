@@ -29,8 +29,3 @@ pnpm install;
 
 # Run docker-compose
 docker-compose -f docker-compose.prod.yml up;
-
-# Let's Encrypt Certificate
-sudo add-apt-repository ppa:certbot/certbot;
-sudo apt update;
-sudo apt install certbot
