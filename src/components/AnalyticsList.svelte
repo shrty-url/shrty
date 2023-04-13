@@ -6,7 +6,7 @@
 	{#each links as link}
 		<div class="border rounded-lg px-4 py-2">
 					<p>Shrty URL</p>
-					<a href="http://localhost:3000/analytics/{link.shortcode}">https://shrty.it/{link.shortcode}</a>
+					<a href="/analytics/{link.shortcode}">https://shrty.it/{link.shortcode}</a>
 					<p>Link</p>
 					<a href={link.url}>{link.url}</a>
 		</div>

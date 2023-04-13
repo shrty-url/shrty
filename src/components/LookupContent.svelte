@@ -86,7 +86,7 @@
 					<tr>
 						<td> Short URL</td>
 						<td>
-							<a href="http://localhost:3000/{info.shortcode}"
+							<a href="/{info.shortcode}"
 								>https://shrty.it/{info.shortcode}</a
 							>
 						</td>
