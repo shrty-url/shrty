@@ -49,7 +49,7 @@
 	{#if !shortcode}
 	<div>
 		<span class="text-red-400">{error}</span>
-		<div class="flex flex-row gap-4">
+		<div class="flex flex-col gap-4 sm:flex-row">
 			<input
 				type="text"
 				placeholder="URL"
@@ -57,7 +57,7 @@
 				bind:value={url}
 			/>
 			<button
-				class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors active:bg-blue-800"
+				class="bg-blue-600 w-min text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors active:bg-blue-800"
 				on:click={shortenURL}>Shorten!</button
 			>
 		</div>

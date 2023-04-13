@@ -65,11 +65,11 @@
 	});
 </script>
 
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-8 px-8">
 	<a href="/analytics">← Analytics</a>
 	<div class="flex flex-col gap-4">
 		<h1>{info.shortcode}</h1>
-		<div class="grid grid-cols-2 gap-8">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 			
 			<table>
 				<tbody>
