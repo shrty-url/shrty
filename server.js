@@ -1,21 +1,18 @@
-import express from 'express';
-import {
-	handler as ssrHandler
-} from './dist/server/entry.mjs';
-import * as fs from "fs";
+import express from "express";
+import { handler as ssrHandler } from "./dist/server/entry.mjs";
 import * as http from "http";
 import * as https from "https";
 
-const privateKey = fs.readFileSync('/shrty/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/shrty/fullchain.pem', 'utf8');
+const privateKey = atob(process.env.PRIVATE_KEY);
+const certificate = atob(process.env.CERTIFICATE);
 
 const credentials = {
 	key: privateKey,
-	cert: certificate
+	cert: certificate,
 };
 
 const app = express();
-app.use(express.static('dist/client/'))
+app.use(express.static("dist/client/"));
 app.use(ssrHandler);
 
 var httpServer = http.createServer(app);
