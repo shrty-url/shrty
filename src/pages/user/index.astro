@@ -1,0 +1,13 @@
+---
+import { getUser, isLoggedIn } from "src/lib/SharedVerification";
+import Layout from "~/layouts/Layout.astro";
+
+
+let user = await getUser(Astro);
+let loggedIn = isLoggedIn(Astro)
+---
+
+
+<Layout title="Dashboard | Shrty">
+	<h1>Welcome Back, {user.username}</h1>
+</Layout>
