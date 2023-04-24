@@ -20,7 +20,7 @@ export function isLoggedIn(astro: AstroGlobal) {
 		}
 	}
 
-	return loggedIn;
+	return false;
 }
 
 

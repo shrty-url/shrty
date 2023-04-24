@@ -5,6 +5,10 @@ import Layout from "~/layouts/Layout.astro";
 
 let user = await getUser(Astro);
 let loggedIn = isLoggedIn(Astro)
+
+if (!loggedIn) {
+	return Astro.redirect("/user/login")
+}
 ---
 
 
