@@ -50,7 +50,11 @@ export const post: APIRoute = async ({ params, request }) => {
 		hosts_id: hostId
 	});
 
-	return ApiRouteSuccess({
+	const response = ApiRouteSuccess({
 		shortcode,
 	});
+
+	response.headers.set("Access-Control-Allow-Origin", "*")
+
+	return response;
 };

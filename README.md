@@ -85,7 +85,6 @@ Don't forget to give the project a star! Thanks again!
 
 Shrty is released under the MIT License. See the LICENSE file for more information.
 
-
 [contributors-shield]: https://img.shields.io/github/contributors/shrty-url/shrty.svg?style=for-the-badge
 [contributors-url]: https://github.com/shrty-url/shrty/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/shrty-url/shrty.svg?style=for-the-badge
